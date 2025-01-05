@@ -1,6 +1,9 @@
 const express = require("express");
 const app = express();
+const dbConnect = require("./config/dbConnect");
 const port = 3002;
+
+dbConnect();
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
