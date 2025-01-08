@@ -1,0 +1,2865 @@
+[
+    {
+        "id": "a3eb555f-3dbe-4cb3-9bf9-dab85570a97b",
+        "imageSrc": [
+            "/assets/icons/mobility.png",
+            "/assets/icons/electronics.png",
+            "/assets/icons/books.png"
+        ],
+        "title": "mobility 상품 1",
+        "status": "completed",
+        "condition": "very_bad",
+        "price": "7000",
+        "sellerName": "박지수",
+        "date": "2024-06-17",
+        "category": "mobility",
+        "description": "중고로 구매하셔야 합니다.",
+        "deals": [
+            {
+                "id": "2d326ba3-3ff0-43e2-8a62-c5191633884c",
+                "user": "홍길동",
+                "price": "39000",
+                "date": "2025-01-05",
+                "conditionType": "best"
+            }
+        ]
+    },
+    {
+        "id": "3ff13a7e-c217-417c-b395-19458b0e41c4",
+        "imageSrc": [
+            "/assets/icons/refrigerator.png",
+            "/assets/icons/electronics.png",
+            "/assets/icons/books.png"
+        ],
+        "title": "refrigerator 상품 2",
+        "status": "reserved",
+        "condition": "best",
+        "price": "32000",
+        "sellerName": "박지수",
+        "date": "2024-09-18",
+        "category": "refrigerator",
+        "description": "거의 새 상품과 같은 상태입니다.",
+        "deals": []
+    },
+    {
+        "id": "858705e7-1bf0-4da9-9d92-0a80324d9dd4",
+        "imageSrc": [
+            "/assets/icons/electronics.png",
+            "/assets/icons/gifticon.png",
+            "/assets/icons/books.png"
+        ],
+        "title": "electronics 상품 3",
+        "status": "available",
+        "condition": "very_bad",
+        "price": "18000",
+        "sellerName": "김혜리",
+        "date": "2024-09-09",
+        "category": "electronics",
+        "description": "중고로 구매하셔야 합니다.",
+        "deals": [
+            {
+                "id": "2720a73f-b350-4e70-8d70-f71503f0be1d",
+                "user": "홍길동",
+                "price": "41000",
+                "date": "2024-12-15",
+                "conditionType": "bad"
+            },
+            {
+                "id": "caad27c5-ffcf-4920-adef-73d9ecc669cf",
+                "user": "박민호",
+                "price": "5000",
+                "date": "2024-06-23",
+                "conditionType": "best"
+            }
+        ]
+    },
+    {
+        "id": "9587ca2f-22bb-4f12-b90b-9aabb8b7e007",
+        "imageSrc": [
+            "/assets/icons/books.png",
+            "/assets/icons/mobility.png",
+            "/assets/icons/refrigerator.png"
+        ],
+        "title": "books 상품 4",
+        "status": "reserved",
+        "condition": "best",
+        "price": "29000",
+        "sellerName": "박민호",
+        "date": "2024-05-11",
+        "category": "books",
+        "description": "거의 새 상품과 같은 상태입니다.",
+        "deals": [
+            {
+                "id": "4ddd3a77-6a9f-47a4-bbe2-6f05a8a361bf",
+                "user": "김철수",
+                "price": "10000",
+                "date": "2024-04-10",
+                "conditionType": "best"
+            },
+            {
+                "id": "fbe27fe9-1ada-4159-8cd7-816f2154839e",
+                "user": "이영희",
+                "price": "47000",
+                "date": "2024-10-14",
+                "conditionType": "best"
+            }
+        ]
+    },
+    {
+        "id": "672c9720-26c1-49ab-9074-45c198c8767b",
+        "imageSrc": [
+            "/assets/icons/gifticon.png",
+            "/assets/icons/books.png",
+            "/assets/icons/electronics.png"
+        ],
+        "title": "gifticon 상품 5",
+        "status": "available",
+        "condition": "good",
+        "price": "27000",
+        "sellerName": "김혜리",
+        "date": "2024-08-15",
+        "category": "gifticon",
+        "description": "중고로 구매하셔야 합니다.",
+        "deals": [
+            {
+                "id": "b07c577d-a28b-4501-920a-dd37a1b4fe31",
+                "user": "홍길동",
+                "price": "8000",
+                "date": "2024-12-20",
+                "conditionType": "average"
+            },
+            {
+                "id": "ce0dfb55-3eb2-4f6b-8561-2f558b98ccf5",
+                "user": "박민호",
+                "price": "28000",
+                "date": "2024-03-18",
+                "conditionType": "good"
+            },
+            {
+                "id": "54a8bb6b-96ba-43b3-aa8a-b033642b9325",
+                "user": "박민호",
+                "price": "37000",
+                "date": "2024-02-09",
+                "conditionType": "bad"
+            }
+        ]
+    },
+    {
+        "id": "df1adf04-a400-4575-aa1a-e90c7d9a8c48",
+        "imageSrc": [
+            "/assets/icons/office.png",
+            "/assets/icons/others.png",
+            "/assets/icons/gifticon.png"
+        ],
+        "title": "office 상품 6",
+        "status": "reserved",
+        "condition": "good",
+        "price": "10000",
+        "sellerName": "김철수",
+        "date": "2024-09-21",
+        "category": "office",
+        "description": "부품용으로 판매됩니다.",
+        "deals": [
+            {
+                "id": "a5345d03-4143-488e-99ab-d261b24e17b8",
+                "user": "박민호",
+                "price": "20000",
+                "date": "2024-06-21",
+                "conditionType": "good"
+            }
+        ]
+    },
+    {
+        "id": "416e1ada-465d-4444-8e42-739b1664543f",
+        "imageSrc": [
+            "/assets/icons/others.png",
+            "/assets/icons/gifticon.png",
+            "/assets/icons/electronics.png"
+        ],
+        "title": "others 상품 7",
+        "status": "reserved",
+        "condition": "good",
+        "price": "23000",
+        "sellerName": "이영희",
+        "date": "2024-05-12",
+        "category": "others",
+        "description": "사용 흔적이 있지만 정상 작동합니다.",
+        "deals": []
+    },
+    {
+        "id": "d4b3fe96-837e-4299-9289-90a96935985e",
+        "imageSrc": [
+            "/assets/icons/mobility.png",
+            "/assets/icons/electronics.png",
+            "/assets/icons/books.png"
+        ],
+        "title": "mobility 상품 8",
+        "status": "reserved",
+        "condition": "very_bad",
+        "price": "28000",
+        "sellerName": "홍길동",
+        "date": "2025-01-06",
+        "category": "mobility",
+        "description": "사용 흔적이 있지만 정상 작동합니다.",
+        "deals": [
+            {
+                "id": "1e9230df-4aa6-4274-bf5c-094ee4aea3db",
+                "user": "이영희",
+                "price": "15000",
+                "date": "2024-03-02",
+                "conditionType": "average"
+            }
+        ]
+    },
+    {
+        "id": "50e71e58-17bf-4623-9ab5-5a1a6b976c6a",
+        "imageSrc": [
+            "/assets/icons/refrigerator.png",
+            "/assets/icons/office.png",
+            "/assets/icons/electronics.png"
+        ],
+        "title": "refrigerator 상품 9",
+        "status": "completed",
+        "condition": "good",
+        "price": "26000",
+        "sellerName": "이영희",
+        "date": "2024-05-01",
+        "category": "refrigerator",
+        "description": "중고로 구매하셔야 합니다.",
+        "deals": [
+            {
+                "id": "9f9e022f-7173-44ce-9376-d98b1b659abb",
+                "user": "이영희",
+                "price": "31000",
+                "date": "2024-10-03",
+                "conditionType": "very_bad"
+            },
+            {
+                "id": "cc2d240e-cf6a-4270-aa6c-fe429bc85383",
+                "user": "이영희",
+                "price": "25000",
+                "date": "2024-06-22",
+                "conditionType": "bad"
+            },
+            {
+                "id": "f308c240-9f4f-48f8-91c0-f0a448405a60",
+                "user": "박민호",
+                "price": "37000",
+                "date": "2024-09-21",
+                "conditionType": "very_bad"
+            }
+        ]
+    },
+    {
+        "id": "ca4e6d16-59df-4de6-9099-8f56bf3ef170",
+        "imageSrc": [
+            "/assets/icons/electronics.png",
+            "/assets/icons/others.png",
+            "/assets/icons/mobility.png"
+        ],
+        "title": "electronics 상품 10",
+        "status": "reserved",
+        "condition": "good",
+        "price": "6000",
+        "sellerName": "정민호",
+        "date": "2024-12-06",
+        "category": "electronics",
+        "description": "부품용으로 판매됩니다.",
+        "deals": [
+            {
+                "id": "aef80628-baf4-4ce1-a510-703203e1af5f",
+                "user": "정민호",
+                "price": "20000",
+                "date": "2024-12-24",
+                "conditionType": "bad"
+            }
+        ]
+    },
+    {
+        "id": "79fff2f0-bef1-4ecd-803f-3a3c83d19281",
+        "imageSrc": [
+            "/assets/icons/books.png",
+            "/assets/icons/electronics.png",
+            "/assets/icons/others.png"
+        ],
+        "title": "books 상품 11",
+        "status": "available",
+        "condition": "bad",
+        "price": "38000",
+        "sellerName": "홍길동",
+        "date": "2024-09-14",
+        "category": "books",
+        "description": "중고로 구매하셔야 합니다.",
+        "deals": [
+            {
+                "id": "3f07bb97-3284-4855-bd35-a492423df861",
+                "user": "홍길동",
+                "price": "45000",
+                "date": "2024-11-15",
+                "conditionType": "bad"
+            },
+            {
+                "id": "a5d5f6ea-7545-465b-bcf9-551ee16ed274",
+                "user": "박민호",
+                "price": "47000",
+                "date": "2024-11-26",
+                "conditionType": "bad"
+            },
+            {
+                "id": "db85169a-09db-47e7-8f4b-de1da666cf69",
+                "user": "김철수",
+                "price": "13000",
+                "date": "2024-12-26",
+                "conditionType": "best"
+            }
+        ]
+    },
+    {
+        "id": "496c1eb8-c0c9-4073-88a3-fb8715689615",
+        "imageSrc": [
+            "/assets/icons/gifticon.png",
+            "/assets/icons/others.png",
+            "/assets/icons/office.png"
+        ],
+        "title": "gifticon 상품 12",
+        "status": "available",
+        "condition": "very_bad",
+        "price": "1000",
+        "sellerName": "박민호",
+        "date": "2024-10-27",
+        "category": "gifticon",
+        "description": "사용 흔적이 있지만 정상 작동합니다.",
+        "deals": [
+            {
+                "id": "5780ae84-de16-4a5b-a57e-a37848aad3d2",
+                "user": "김철수",
+                "price": "31000",
+                "date": "2024-08-06",
+                "conditionType": "best"
+            },
+            {
+                "id": "ca17df70-7ce0-4b3c-926d-a5c839cd21a1",
+                "user": "이영희",
+                "price": "47000",
+                "date": "2024-06-19",
+                "conditionType": "bad"
+            },
+            {
+                "id": "35e9de30-615c-48e7-94a5-e40077d9680a",
+                "user": "박민호",
+                "price": "11000",
+                "date": "2024-02-01",
+                "conditionType": "good"
+            }
+        ]
+    },
+    {
+        "id": "d98bc566-9e4f-4c2c-935c-f4e160dd72a5",
+        "imageSrc": [
+            "/assets/icons/office.png",
+            "/assets/icons/refrigerator.png",
+            "/assets/icons/books.png"
+        ],
+        "title": "office 상품 13",
+        "status": "completed",
+        "condition": "best",
+        "price": "14000",
+        "sellerName": "정민호",
+        "date": "2024-12-30",
+        "category": "office",
+        "description": "거의 새 상품과 같은 상태입니다.",
+        "deals": []
+    },
+    {
+        "id": "3eb51b36-b5d5-4071-a0b1-d353a5fd4de5",
+        "imageSrc": [
+            "/assets/icons/others.png",
+            "/assets/icons/office.png",
+            "/assets/icons/books.png"
+        ],
+        "title": "others 상품 14",
+        "status": "completed",
+        "condition": "good",
+        "price": "45000",
+        "sellerName": "정민호",
+        "date": "2024-09-04",
+        "category": "others",
+        "description": "사용 흔적이 있지만 정상 작동합니다.",
+        "deals": [
+            {
+                "id": "38a901f2-6872-43ae-8c79-8e4732268000",
+                "user": "김철수",
+                "price": "39000",
+                "date": "2024-06-01",
+                "conditionType": "very_bad"
+            },
+            {
+                "id": "e3258d9e-612a-47f7-aa2c-181f8ba78a0d",
+                "user": "정민호",
+                "price": "46000",
+                "date": "2025-01-08",
+                "conditionType": "very_bad"
+            },
+            {
+                "id": "019c67bc-22da-4956-ac4d-e5836e733e7f",
+                "user": "김철수",
+                "price": "14000",
+                "date": "2024-01-29",
+                "conditionType": "good"
+            }
+        ]
+    },
+    {
+        "id": "087622b8-9bfc-41c5-843c-590915124eaf",
+        "imageSrc": [
+            "/assets/icons/mobility.png",
+            "/assets/icons/others.png",
+            "/assets/icons/books.png"
+        ],
+        "title": "mobility 상품 15",
+        "status": "completed",
+        "condition": "very_bad",
+        "price": "14000",
+        "sellerName": "이영희",
+        "date": "2024-12-03",
+        "category": "mobility",
+        "description": "부품용으로 판매됩니다.",
+        "deals": []
+    },
+    {
+        "id": "8ed865a8-46ad-408e-b0ee-925741da6ae2",
+        "imageSrc": [
+            "/assets/icons/refrigerator.png",
+            "/assets/icons/books.png",
+            "/assets/icons/others.png"
+        ],
+        "title": "refrigerator 상품 16",
+        "status": "completed",
+        "condition": "average",
+        "price": "36000",
+        "sellerName": "김혜리",
+        "date": "2024-04-25",
+        "category": "refrigerator",
+        "description": "부품용으로 판매됩니다.",
+        "deals": []
+    },
+    {
+        "id": "2e72797b-015a-4ee5-8896-4ea36550d5ac",
+        "imageSrc": [
+            "/assets/icons/electronics.png",
+            "/assets/icons/others.png",
+            "/assets/icons/office.png"
+        ],
+        "title": "electronics 상품 17",
+        "status": "completed",
+        "condition": "very_bad",
+        "price": "39000",
+        "sellerName": "박민호",
+        "date": "2024-04-27",
+        "category": "electronics",
+        "description": "중고로 구매하셔야 합니다.",
+        "deals": [
+            {
+                "id": "64c25e94-9326-492d-a217-e46cf264e3d9",
+                "user": "김철수",
+                "price": "17000",
+                "date": "2024-05-11",
+                "conditionType": "best"
+            }
+        ]
+    },
+    {
+        "id": "810ecff4-d9e3-4ecc-ae61-4772cd32dc6e",
+        "imageSrc": [
+            "/assets/icons/books.png",
+            "/assets/icons/gifticon.png",
+            "/assets/icons/mobility.png"
+        ],
+        "title": "books 상품 18",
+        "status": "reserved",
+        "condition": "good",
+        "price": "27000",
+        "sellerName": "홍길동",
+        "date": "2024-03-08",
+        "category": "books",
+        "description": "중고로 구매하셔야 합니다.",
+        "deals": [
+            {
+                "id": "b9fc4b0e-a2cd-4e40-b15d-df042043833f",
+                "user": "박지수",
+                "price": "44000",
+                "date": "2024-01-20",
+                "conditionType": "bad"
+            },
+            {
+                "id": "a496fe45-fdba-49cd-a5a2-041ce4214fda",
+                "user": "홍길동",
+                "price": "42000",
+                "date": "2024-07-23",
+                "conditionType": "average"
+            },
+            {
+                "id": "5fa4f30b-9c74-458f-a628-2fe6d2965ef0",
+                "user": "이영희",
+                "price": "38000",
+                "date": "2024-09-16",
+                "conditionType": "good"
+            }
+        ]
+    },
+    {
+        "id": "ea4eb1d5-4eda-4e7e-a615-030c90653644",
+        "imageSrc": [
+            "/assets/icons/gifticon.png",
+            "/assets/icons/office.png",
+            "/assets/icons/mobility.png"
+        ],
+        "title": "gifticon 상품 19",
+        "status": "reserved",
+        "condition": "bad",
+        "price": "38000",
+        "sellerName": "박민호",
+        "date": "2024-12-10",
+        "category": "gifticon",
+        "description": "부품용으로 판매됩니다.",
+        "deals": [
+            {
+                "id": "d3d33ded-d3b5-46a6-916c-cfc0672969f7",
+                "user": "홍길동",
+                "price": "30000",
+                "date": "2024-07-01",
+                "conditionType": "bad"
+            },
+            {
+                "id": "67dcf452-f254-4c1e-b283-a44265ef7566",
+                "user": "박민호",
+                "price": "6000",
+                "date": "2024-03-10",
+                "conditionType": "bad"
+            },
+            {
+                "id": "a094dc8d-6f42-4927-b6f6-2e183fb3e079",
+                "user": "이영희",
+                "price": "46000",
+                "date": "2024-09-06",
+                "conditionType": "bad"
+            }
+        ]
+    },
+    {
+        "id": "d0fe2b23-c2d8-4ed4-b477-188d425308a0",
+        "imageSrc": [
+            "/assets/icons/office.png",
+            "/assets/icons/mobility.png",
+            "/assets/icons/refrigerator.png"
+        ],
+        "title": "office 상품 20",
+        "status": "completed",
+        "condition": "very_bad",
+        "price": "26000",
+        "sellerName": "박지수",
+        "date": "2024-01-23",
+        "category": "office",
+        "description": "사용 흔적이 있지만 정상 작동합니다.",
+        "deals": [
+            {
+                "id": "f57286d4-ae10-4993-8c0c-fc50ecc2c504",
+                "user": "박민호",
+                "price": "11000",
+                "date": "2024-07-28",
+                "conditionType": "best"
+            },
+            {
+                "id": "fb7d6b4b-8445-46db-8dff-dbfbfe6bd952",
+                "user": "김혜리",
+                "price": "3000",
+                "date": "2024-03-15",
+                "conditionType": "average"
+            }
+        ]
+    },
+    {
+        "id": "a27b84a2-520b-4339-b512-cc2773576031",
+        "imageSrc": [
+            "/assets/icons/others.png",
+            "/assets/icons/refrigerator.png",
+            "/assets/icons/books.png"
+        ],
+        "title": "others 상품 21",
+        "status": "available",
+        "condition": "average",
+        "price": "9000",
+        "sellerName": "이영희",
+        "date": "2024-08-29",
+        "category": "others",
+        "description": "중고로 구매하셔야 합니다.",
+        "deals": [
+            {
+                "id": "602a1cc4-5a49-4e35-a9eb-197ca49b94fc",
+                "user": "김철수",
+                "price": "18000",
+                "date": "2025-01-03",
+                "conditionType": "best"
+            },
+            {
+                "id": "714c5d86-9713-49ba-bb45-5f834ed938f8",
+                "user": "이영희",
+                "price": "19000",
+                "date": "2024-10-07",
+                "conditionType": "bad"
+            },
+            {
+                "id": "7e0f4f87-2e2b-4109-9d60-2e2b4bc06c16",
+                "user": "홍길동",
+                "price": "48000",
+                "date": "2024-09-12",
+                "conditionType": "very_bad"
+            }
+        ]
+    },
+    {
+        "id": "8d7ed7b8-3329-4cc3-848a-1120e0b5e42a",
+        "imageSrc": [
+            "/assets/icons/mobility.png",
+            "/assets/icons/refrigerator.png",
+            "/assets/icons/office.png"
+        ],
+        "title": "mobility 상품 22",
+        "status": "completed",
+        "condition": "average",
+        "price": "26000",
+        "sellerName": "홍길동",
+        "date": "2024-09-13",
+        "category": "mobility",
+        "description": "부품용으로 판매됩니다.",
+        "deals": [
+            {
+                "id": "65a5f61a-a192-4978-8871-86f4f7b844ac",
+                "user": "박지수",
+                "price": "7000",
+                "date": "2024-02-05",
+                "conditionType": "average"
+            },
+            {
+                "id": "966f7643-967c-4ca1-beee-be840a3bd8b2",
+                "user": "김철수",
+                "price": "29000",
+                "date": "2024-11-18",
+                "conditionType": "best"
+            }
+        ]
+    },
+    {
+        "id": "ffacb88d-0283-4f28-a599-24fc79df0727",
+        "imageSrc": [
+            "/assets/icons/refrigerator.png",
+            "/assets/icons/electronics.png",
+            "/assets/icons/others.png"
+        ],
+        "title": "refrigerator 상품 23",
+        "status": "reserved",
+        "condition": "very_bad",
+        "price": "39000",
+        "sellerName": "이영희",
+        "date": "2024-04-08",
+        "category": "refrigerator",
+        "description": "사용 흔적이 있지만 정상 작동합니다.",
+        "deals": [
+            {
+                "id": "36f52c32-3de1-4e27-b959-2651e1e5250d",
+                "user": "김혜리",
+                "price": "37000",
+                "date": "2024-11-13",
+                "conditionType": "good"
+            },
+            {
+                "id": "f4ea6434-6a09-41e2-9be7-7dc12f3f09ab",
+                "user": "정민호",
+                "price": "7000",
+                "date": "2024-02-25",
+                "conditionType": "average"
+            },
+            {
+                "id": "dcf4c8d4-19f6-4005-985c-744818e37552",
+                "user": "박민호",
+                "price": "43000",
+                "date": "2024-03-13",
+                "conditionType": "average"
+            }
+        ]
+    },
+    {
+        "id": "cd32ccdd-a420-470e-a5c1-3e5e448e0a18",
+        "imageSrc": [
+            "/assets/icons/electronics.png",
+            "/assets/icons/others.png",
+            "/assets/icons/gifticon.png"
+        ],
+        "title": "electronics 상품 24",
+        "status": "reserved",
+        "condition": "average",
+        "price": "43000",
+        "sellerName": "김철수",
+        "date": "2024-11-12",
+        "category": "electronics",
+        "description": "부품용으로 판매됩니다.",
+        "deals": [
+            {
+                "id": "1d0af1cd-ac4a-472f-b0b8-14849a067868",
+                "user": "박민호",
+                "price": "25000",
+                "date": "2024-02-03",
+                "conditionType": "very_bad"
+            },
+            {
+                "id": "4182f2c3-6b75-4e53-ad16-7045b39650ae",
+                "user": "김혜리",
+                "price": "34000",
+                "date": "2024-01-14",
+                "conditionType": "best"
+            },
+            {
+                "id": "d672efb3-eebb-46e1-894e-bde66284ae0b",
+                "user": "이영희",
+                "price": "21000",
+                "date": "2024-02-28",
+                "conditionType": "bad"
+            }
+        ]
+    },
+    {
+        "id": "12e3ddb5-994e-4dae-a92a-6b222b1856ae",
+        "imageSrc": [
+            "/assets/icons/books.png",
+            "/assets/icons/gifticon.png",
+            "/assets/icons/others.png"
+        ],
+        "title": "books 상품 25",
+        "status": "completed",
+        "condition": "very_bad",
+        "price": "22000",
+        "sellerName": "박민호",
+        "date": "2024-11-14",
+        "category": "books",
+        "description": "상품 상태가 양호합니다.",
+        "deals": []
+    },
+    {
+        "id": "9a8d53b4-3491-4dbe-8f2c-cff836e8879c",
+        "imageSrc": [
+            "/assets/icons/gifticon.png",
+            "/assets/icons/books.png",
+            "/assets/icons/refrigerator.png"
+        ],
+        "title": "gifticon 상품 26",
+        "status": "completed",
+        "condition": "best",
+        "price": "26000",
+        "sellerName": "이영희",
+        "date": "2024-06-21",
+        "category": "gifticon",
+        "description": "사용 흔적이 있지만 정상 작동합니다.",
+        "deals": [
+            {
+                "id": "0f448e32-79bd-4d07-a610-8ab4705f971c",
+                "user": "박민호",
+                "price": "14000",
+                "date": "2024-12-21",
+                "conditionType": "average"
+            }
+        ]
+    },
+    {
+        "id": "60484a00-6a5e-4fe8-8364-46a1d6217254",
+        "imageSrc": [
+            "/assets/icons/office.png",
+            "/assets/icons/electronics.png",
+            "/assets/icons/gifticon.png"
+        ],
+        "title": "office 상품 27",
+        "status": "reserved",
+        "condition": "very_bad",
+        "price": "23000",
+        "sellerName": "김혜리",
+        "date": "2024-03-22",
+        "category": "office",
+        "description": "중고로 구매하셔야 합니다.",
+        "deals": [
+            {
+                "id": "ba191c60-ee78-4cff-9ba2-1fe6fa6c6331",
+                "user": "김혜리",
+                "price": "48000",
+                "date": "2024-12-29",
+                "conditionType": "good"
+            },
+            {
+                "id": "65f0aec3-ff8d-4ea0-9953-823ef7fd7738",
+                "user": "김철수",
+                "price": "38000",
+                "date": "2024-09-18",
+                "conditionType": "average"
+            },
+            {
+                "id": "e8d080b4-bc3c-423e-a1ce-99daf8d4b892",
+                "user": "정민호",
+                "price": "44000",
+                "date": "2024-03-26",
+                "conditionType": "good"
+            }
+        ]
+    },
+    {
+        "id": "c6dedede-53d2-446a-a6e0-f27c44d9697d",
+        "imageSrc": [
+            "/assets/icons/others.png",
+            "/assets/icons/books.png",
+            "/assets/icons/mobility.png"
+        ],
+        "title": "others 상품 28",
+        "status": "available",
+        "condition": "best",
+        "price": "27000",
+        "sellerName": "박지수",
+        "date": "2024-07-16",
+        "category": "others",
+        "description": "사용 흔적이 있지만 정상 작동합니다.",
+        "deals": [
+            {
+                "id": "78ef1c7e-f976-4138-a003-700a884f3092",
+                "user": "박민호",
+                "price": "33000",
+                "date": "2024-10-18",
+                "conditionType": "bad"
+            }
+        ]
+    },
+    {
+        "id": "4c731093-b1a9-4ffb-96bc-fdfd7da42220",
+        "imageSrc": [
+            "/assets/icons/mobility.png",
+            "/assets/icons/gifticon.png",
+            "/assets/icons/others.png"
+        ],
+        "title": "mobility 상품 29",
+        "status": "reserved",
+        "condition": "very_bad",
+        "price": "8000",
+        "sellerName": "박지수",
+        "date": "2024-03-11",
+        "category": "mobility",
+        "description": "중고로 구매하셔야 합니다.",
+        "deals": [
+            {
+                "id": "8e4790a7-b251-413e-a4f9-e64e1cff01c5",
+                "user": "홍길동",
+                "price": "8000",
+                "date": "2024-12-19",
+                "conditionType": "bad"
+            },
+            {
+                "id": "872dd456-9364-427d-9a19-77b8cab3a0d1",
+                "user": "이영희",
+                "price": "18000",
+                "date": "2024-01-10",
+                "conditionType": "bad"
+            }
+        ]
+    },
+    {
+        "id": "0c534e47-2ce1-4198-85d7-1c7d6118d3d2",
+        "imageSrc": [
+            "/assets/icons/refrigerator.png",
+            "/assets/icons/others.png",
+            "/assets/icons/office.png"
+        ],
+        "title": "refrigerator 상품 30",
+        "status": "available",
+        "condition": "best",
+        "price": "40000",
+        "sellerName": "김철수",
+        "date": "2024-06-27",
+        "category": "refrigerator",
+        "description": "상품 상태가 양호합니다.",
+        "deals": []
+    },
+    {
+        "id": "948de5bf-d340-4a28-bea1-2e82d2d61755",
+        "imageSrc": [
+            "/assets/icons/electronics.png",
+            "/assets/icons/refrigerator.png",
+            "/assets/icons/mobility.png"
+        ],
+        "title": "electronics 상품 31",
+        "status": "completed",
+        "condition": "good",
+        "price": "23000",
+        "sellerName": "정민호",
+        "date": "2024-12-03",
+        "category": "electronics",
+        "description": "사용 흔적이 있지만 정상 작동합니다.",
+        "deals": [
+            {
+                "id": "4c95ebe4-d17a-4b3d-8eb4-f133a32a3f2c",
+                "user": "박민호",
+                "price": "50000",
+                "date": "2024-01-29",
+                "conditionType": "very_bad"
+            },
+            {
+                "id": "afc48dd8-bcb4-4ea0-97e6-b626ba15657c",
+                "user": "김혜리",
+                "price": "5000",
+                "date": "2024-06-05",
+                "conditionType": "bad"
+            }
+        ]
+    },
+    {
+        "id": "7fee803f-179f-44a2-9f7a-24fcd0ad2c73",
+        "imageSrc": [
+            "/assets/icons/books.png",
+            "/assets/icons/electronics.png",
+            "/assets/icons/refrigerator.png"
+        ],
+        "title": "books 상품 32",
+        "status": "completed",
+        "condition": "very_bad",
+        "price": "14000",
+        "sellerName": "김혜리",
+        "date": "2024-10-30",
+        "category": "books",
+        "description": "거의 새 상품과 같은 상태입니다.",
+        "deals": []
+    },
+    {
+        "id": "9e70509e-b52f-4364-8f35-f1ac108c3779",
+        "imageSrc": [
+            "/assets/icons/gifticon.png",
+            "/assets/icons/electronics.png",
+            "/assets/icons/refrigerator.png"
+        ],
+        "title": "gifticon 상품 33",
+        "status": "reserved",
+        "condition": "bad",
+        "price": "12000",
+        "sellerName": "이영희",
+        "date": "2024-03-18",
+        "category": "gifticon",
+        "description": "중고로 구매하셔야 합니다.",
+        "deals": []
+    },
+    {
+        "id": "edd22983-85ef-4909-a812-6123dc59957b",
+        "imageSrc": [
+            "/assets/icons/office.png",
+            "/assets/icons/books.png",
+            "/assets/icons/refrigerator.png"
+        ],
+        "title": "office 상품 34",
+        "status": "reserved",
+        "condition": "bad",
+        "price": "47000",
+        "sellerName": "김철수",
+        "date": "2024-10-30",
+        "category": "office",
+        "description": "중고로 구매하셔야 합니다.",
+        "deals": [
+            {
+                "id": "18453f43-e358-4ed9-8372-111ac7a25fed",
+                "user": "이영희",
+                "price": "2000",
+                "date": "2024-01-27",
+                "conditionType": "very_bad"
+            }
+        ]
+    },
+    {
+        "id": "56d5fc8f-5ab6-4b1b-982b-f3b7d74d405f",
+        "imageSrc": [
+            "/assets/icons/others.png",
+            "/assets/icons/books.png",
+            "/assets/icons/gifticon.png"
+        ],
+        "title": "others 상품 35",
+        "status": "available",
+        "condition": "average",
+        "price": "8000",
+        "sellerName": "박지수",
+        "date": "2024-07-03",
+        "category": "others",
+        "description": "중고로 구매하셔야 합니다.",
+        "deals": []
+    },
+    {
+        "id": "e28a1940-cd5a-4a87-a34a-e685a155ecb7",
+        "imageSrc": [
+            "/assets/icons/mobility.png",
+            "/assets/icons/books.png",
+            "/assets/icons/office.png"
+        ],
+        "title": "mobility 상품 36",
+        "status": "available",
+        "condition": "bad",
+        "price": "49000",
+        "sellerName": "이영희",
+        "date": "2024-11-27",
+        "category": "mobility",
+        "description": "상품 상태가 양호합니다.",
+        "deals": [
+            {
+                "id": "3b11f0c0-afcd-4407-9cdb-054f609df9ea",
+                "user": "박민호",
+                "price": "3000",
+                "date": "2024-08-23",
+                "conditionType": "bad"
+            },
+            {
+                "id": "7ba81f1c-c66a-4390-9b87-fe48673a332a",
+                "user": "정민호",
+                "price": "33000",
+                "date": "2024-09-07",
+                "conditionType": "very_bad"
+            },
+            {
+                "id": "9b0cf741-fe72-44d3-a186-3503d8c6a1af",
+                "user": "박지수",
+                "price": "1000",
+                "date": "2024-03-17",
+                "conditionType": "good"
+            }
+        ]
+    },
+    {
+        "id": "b73c68e9-0933-411d-a987-07cbc7accd06",
+        "imageSrc": [
+            "/assets/icons/refrigerator.png",
+            "/assets/icons/books.png",
+            "/assets/icons/office.png"
+        ],
+        "title": "refrigerator 상품 37",
+        "status": "available",
+        "condition": "bad",
+        "price": "29000",
+        "sellerName": "정민호",
+        "date": "2024-01-23",
+        "category": "refrigerator",
+        "description": "사용 흔적이 있지만 정상 작동합니다.",
+        "deals": [
+            {
+                "id": "bb5ed135-66b2-4d0a-8132-44131450e606",
+                "user": "김혜리",
+                "price": "49000",
+                "date": "2024-01-20",
+                "conditionType": "good"
+            }
+        ]
+    },
+    {
+        "id": "43b98413-34d2-4a25-a797-372f90fddc6e",
+        "imageSrc": [
+            "/assets/icons/electronics.png",
+            "/assets/icons/gifticon.png",
+            "/assets/icons/mobility.png"
+        ],
+        "title": "electronics 상품 38",
+        "status": "available",
+        "condition": "bad",
+        "price": "24000",
+        "sellerName": "김철수",
+        "date": "2024-05-22",
+        "category": "electronics",
+        "description": "거의 새 상품과 같은 상태입니다.",
+        "deals": [
+            {
+                "id": "a6fc6f1f-1f7d-474b-a821-af6a4cc12cf1",
+                "user": "박민호",
+                "price": "1000",
+                "date": "2024-11-30",
+                "conditionType": "very_bad"
+            }
+        ]
+    },
+    {
+        "id": "c2012e9e-61ec-493a-ac3e-a6d5ebea3a2b",
+        "imageSrc": [
+            "/assets/icons/books.png",
+            "/assets/icons/electronics.png",
+            "/assets/icons/refrigerator.png"
+        ],
+        "title": "books 상품 39",
+        "status": "available",
+        "condition": "very_bad",
+        "price": "46000",
+        "sellerName": "박민호",
+        "date": "2024-05-05",
+        "category": "books",
+        "description": "거의 새 상품과 같은 상태입니다.",
+        "deals": [
+            {
+                "id": "bb4bc16d-1fdc-43e6-9fc8-9dbb3f233457",
+                "user": "김철수",
+                "price": "23000",
+                "date": "2024-01-21",
+                "conditionType": "bad"
+            }
+        ]
+    },
+    {
+        "id": "f84b973c-9942-4c3a-ae02-83f97c5c7226",
+        "imageSrc": [
+            "/assets/icons/gifticon.png",
+            "/assets/icons/others.png",
+            "/assets/icons/mobility.png"
+        ],
+        "title": "gifticon 상품 40",
+        "status": "available",
+        "condition": "best",
+        "price": "25000",
+        "sellerName": "홍길동",
+        "date": "2024-11-14",
+        "category": "gifticon",
+        "description": "상품 상태가 양호합니다.",
+        "deals": [
+            {
+                "id": "1d12ea7e-3db4-4e0f-b6b9-5fec641e70ec",
+                "user": "박민호",
+                "price": "22000",
+                "date": "2024-12-18",
+                "conditionType": "bad"
+            }
+        ]
+    },
+    {
+        "id": "9dac4b74-d280-4796-84a3-37ba55f1c331",
+        "imageSrc": [
+            "/assets/icons/office.png",
+            "/assets/icons/mobility.png",
+            "/assets/icons/gifticon.png"
+        ],
+        "title": "office 상품 41",
+        "status": "completed",
+        "condition": "very_bad",
+        "price": "48000",
+        "sellerName": "박지수",
+        "date": "2024-05-24",
+        "category": "office",
+        "description": "거의 새 상품과 같은 상태입니다.",
+        "deals": [
+            {
+                "id": "eb478209-af55-42e8-ac06-79eaf77c1dbb",
+                "user": "박지수",
+                "price": "33000",
+                "date": "2024-09-24",
+                "conditionType": "bad"
+            },
+            {
+                "id": "d82b8301-4b79-491a-99c2-c7e5c08639ea",
+                "user": "이영희",
+                "price": "50000",
+                "date": "2024-06-04",
+                "conditionType": "very_bad"
+            }
+        ]
+    },
+    {
+        "id": "0e7f08e8-b656-4085-a645-5dd0077e1503",
+        "imageSrc": [
+            "/assets/icons/others.png",
+            "/assets/icons/mobility.png",
+            "/assets/icons/books.png"
+        ],
+        "title": "others 상품 42",
+        "status": "completed",
+        "condition": "best",
+        "price": "47000",
+        "sellerName": "정민호",
+        "date": "2024-03-30",
+        "category": "others",
+        "description": "사용 흔적이 있지만 정상 작동합니다.",
+        "deals": [
+            {
+                "id": "a98edb47-7146-40a8-b332-2722c3013af6",
+                "user": "홍길동",
+                "price": "27000",
+                "date": "2024-09-26",
+                "conditionType": "very_bad"
+            },
+            {
+                "id": "66cc8212-a007-4fd6-bcb6-86ee0e418ee9",
+                "user": "정민호",
+                "price": "31000",
+                "date": "2024-06-23",
+                "conditionType": "best"
+            }
+        ]
+    },
+    {
+        "id": "6f4ce1d1-cab2-46ef-b92d-07274749fe53",
+        "imageSrc": [
+            "/assets/icons/mobility.png",
+            "/assets/icons/office.png",
+            "/assets/icons/gifticon.png"
+        ],
+        "title": "mobility 상품 43",
+        "status": "completed",
+        "condition": "good",
+        "price": "3000",
+        "sellerName": "홍길동",
+        "date": "2024-05-15",
+        "category": "mobility",
+        "description": "거의 새 상품과 같은 상태입니다.",
+        "deals": [
+            {
+                "id": "1a615dc4-da8c-4f77-b997-129cb2e77d70",
+                "user": "박민호",
+                "price": "33000",
+                "date": "2024-07-22",
+                "conditionType": "bad"
+            }
+        ]
+    },
+    {
+        "id": "0ac4a3e5-fb1a-4b7a-9b25-664b2cfef90b",
+        "imageSrc": [
+            "/assets/icons/refrigerator.png",
+            "/assets/icons/office.png",
+            "/assets/icons/books.png"
+        ],
+        "title": "refrigerator 상품 44",
+        "status": "reserved",
+        "condition": "average",
+        "price": "21000",
+        "sellerName": "박민호",
+        "date": "2024-08-15",
+        "category": "refrigerator",
+        "description": "거의 새 상품과 같은 상태입니다.",
+        "deals": [
+            {
+                "id": "79bb7649-fba0-4a97-98f0-6428e38ed7a7",
+                "user": "김철수",
+                "price": "13000",
+                "date": "2024-04-20",
+                "conditionType": "bad"
+            },
+            {
+                "id": "6363f390-1f0d-4b0b-8dfb-535e9f5326df",
+                "user": "홍길동",
+                "price": "10000",
+                "date": "2024-10-01",
+                "conditionType": "best"
+            },
+            {
+                "id": "7c2d6c6c-1ead-41c3-b9e9-d397c3161630",
+                "user": "이영희",
+                "price": "18000",
+                "date": "2024-03-19",
+                "conditionType": "average"
+            }
+        ]
+    },
+    {
+        "id": "eb35fcfd-d1d5-489e-a4a0-4e6f62a07585",
+        "imageSrc": [
+            "/assets/icons/electronics.png",
+            "/assets/icons/office.png",
+            "/assets/icons/books.png"
+        ],
+        "title": "electronics 상품 45",
+        "status": "available",
+        "condition": "best",
+        "price": "20000",
+        "sellerName": "김철수",
+        "date": "2024-11-30",
+        "category": "electronics",
+        "description": "상품 상태가 양호합니다.",
+        "deals": [
+            {
+                "id": "b4b62e03-a3c6-4e4a-82b7-66684ef7105a",
+                "user": "박지수",
+                "price": "19000",
+                "date": "2024-07-13",
+                "conditionType": "average"
+            },
+            {
+                "id": "2a29781f-4bc4-47b8-84b2-eb4600e04504",
+                "user": "정민호",
+                "price": "40000",
+                "date": "2024-02-15",
+                "conditionType": "very_bad"
+            },
+            {
+                "id": "f1ba6449-7feb-43cc-a944-cf6a1871c0fb",
+                "user": "박지수",
+                "price": "11000",
+                "date": "2024-12-11",
+                "conditionType": "good"
+            }
+        ]
+    },
+    {
+        "id": "3ff1dcc7-5c70-448e-83b8-9f7af9685e95",
+        "imageSrc": [
+            "/assets/icons/books.png",
+            "/assets/icons/office.png",
+            "/assets/icons/gifticon.png"
+        ],
+        "title": "books 상품 46",
+        "status": "reserved",
+        "condition": "very_bad",
+        "price": "30000",
+        "sellerName": "이영희",
+        "date": "2024-06-05",
+        "category": "books",
+        "description": "상품 상태가 양호합니다.",
+        "deals": []
+    },
+    {
+        "id": "75f70bec-b480-4007-a714-87391632663d",
+        "imageSrc": [
+            "/assets/icons/gifticon.png",
+            "/assets/icons/electronics.png",
+            "/assets/icons/office.png"
+        ],
+        "title": "gifticon 상품 47",
+        "status": "completed",
+        "condition": "good",
+        "price": "25000",
+        "sellerName": "박지수",
+        "date": "2024-08-14",
+        "category": "gifticon",
+        "description": "사용 흔적이 있지만 정상 작동합니다.",
+        "deals": [
+            {
+                "id": "b4e5a498-7612-4b2a-9212-ca828a6167bd",
+                "user": "박민호",
+                "price": "6000",
+                "date": "2024-06-18",
+                "conditionType": "good"
+            },
+            {
+                "id": "e3fb2075-1b66-436b-94ca-01de584f748f",
+                "user": "정민호",
+                "price": "45000",
+                "date": "2024-06-06",
+                "conditionType": "good"
+            },
+            {
+                "id": "28226301-a92f-423a-8217-35a7b97c01df",
+                "user": "김혜리",
+                "price": "24000",
+                "date": "2024-08-27",
+                "conditionType": "bad"
+            }
+        ]
+    },
+    {
+        "id": "3b1beb2c-1b17-4fc1-b46c-fbe72a0dbc66",
+        "imageSrc": [
+            "/assets/icons/office.png",
+            "/assets/icons/others.png",
+            "/assets/icons/refrigerator.png"
+        ],
+        "title": "office 상품 48",
+        "status": "completed",
+        "condition": "very_bad",
+        "price": "37000",
+        "sellerName": "정민호",
+        "date": "2024-02-12",
+        "category": "office",
+        "description": "부품용으로 판매됩니다.",
+        "deals": []
+    },
+    {
+        "id": "f24c5bc0-2d48-4335-b169-5ddd9f212236",
+        "imageSrc": [
+            "/assets/icons/others.png",
+            "/assets/icons/refrigerator.png",
+            "/assets/icons/office.png"
+        ],
+        "title": "others 상품 49",
+        "status": "available",
+        "condition": "best",
+        "price": "21000",
+        "sellerName": "홍길동",
+        "date": "2024-07-31",
+        "category": "others",
+        "description": "부품용으로 판매됩니다.",
+        "deals": []
+    },
+    {
+        "id": "6922d7a8-08ea-4c00-8f91-a0669a4ce155",
+        "imageSrc": [
+            "/assets/icons/mobility.png",
+            "/assets/icons/gifticon.png",
+            "/assets/icons/refrigerator.png"
+        ],
+        "title": "mobility 상품 50",
+        "status": "available",
+        "condition": "good",
+        "price": "8000",
+        "sellerName": "박민호",
+        "date": "2024-07-04",
+        "category": "mobility",
+        "description": "사용 흔적이 있지만 정상 작동합니다.",
+        "deals": [
+            {
+                "id": "3298f791-ff40-41fa-af9a-617fa7dd979b",
+                "user": "박지수",
+                "price": "1000",
+                "date": "2024-05-07",
+                "conditionType": "bad"
+            }
+        ]
+    },
+    {
+        "id": "7ab7c1cd-5508-4a64-9e08-6441a2a73271",
+        "imageSrc": [
+            "/assets/icons/refrigerator.png",
+            "/assets/icons/mobility.png",
+            "/assets/icons/office.png"
+        ],
+        "title": "refrigerator 상품 51",
+        "status": "completed",
+        "condition": "best",
+        "price": "27000",
+        "sellerName": "박지수",
+        "date": "2024-11-30",
+        "category": "refrigerator",
+        "description": "중고로 구매하셔야 합니다.",
+        "deals": [
+            {
+                "id": "f2b6077b-b71e-4043-8edb-4601aed60a6c",
+                "user": "박민호",
+                "price": "13000",
+                "date": "2024-12-06",
+                "conditionType": "good"
+            },
+            {
+                "id": "e04ac914-4589-4b2f-9b9e-b692599930b1",
+                "user": "박지수",
+                "price": "35000",
+                "date": "2024-03-30",
+                "conditionType": "very_bad"
+            }
+        ]
+    },
+    {
+        "id": "64a2201d-f9d1-4514-b0b6-9f12d47ed9a5",
+        "imageSrc": [
+            "/assets/icons/electronics.png",
+            "/assets/icons/refrigerator.png",
+            "/assets/icons/office.png"
+        ],
+        "title": "electronics 상품 52",
+        "status": "reserved",
+        "condition": "good",
+        "price": "14000",
+        "sellerName": "정민호",
+        "date": "2024-10-18",
+        "category": "electronics",
+        "description": "사용 흔적이 있지만 정상 작동합니다.",
+        "deals": [
+            {
+                "id": "2aa84e10-b0aa-4a08-988a-8b1d90053737",
+                "user": "홍길동",
+                "price": "20000",
+                "date": "2024-07-17",
+                "conditionType": "good"
+            }
+        ]
+    },
+    {
+        "id": "97b3ec21-05ce-4bf7-8803-f5d3e43c5db4",
+        "imageSrc": [
+            "/assets/icons/books.png",
+            "/assets/icons/others.png",
+            "/assets/icons/electronics.png"
+        ],
+        "title": "books 상품 53",
+        "status": "completed",
+        "condition": "best",
+        "price": "5000",
+        "sellerName": "박민호",
+        "date": "2024-05-08",
+        "category": "books",
+        "description": "거의 새 상품과 같은 상태입니다.",
+        "deals": []
+    },
+    {
+        "id": "e744451c-c44c-4ed0-8e8c-7c6a70546828",
+        "imageSrc": [
+            "/assets/icons/gifticon.png",
+            "/assets/icons/others.png",
+            "/assets/icons/books.png"
+        ],
+        "title": "gifticon 상품 54",
+        "status": "available",
+        "condition": "very_bad",
+        "price": "16000",
+        "sellerName": "박민호",
+        "date": "2024-10-03",
+        "category": "gifticon",
+        "description": "사용 흔적이 있지만 정상 작동합니다.",
+        "deals": []
+    },
+    {
+        "id": "9a9d8e02-5015-4522-b552-f06c9c211672",
+        "imageSrc": [
+            "/assets/icons/office.png",
+            "/assets/icons/refrigerator.png",
+            "/assets/icons/gifticon.png"
+        ],
+        "title": "office 상품 55",
+        "status": "reserved",
+        "condition": "very_bad",
+        "price": "45000",
+        "sellerName": "이영희",
+        "date": "2024-04-26",
+        "category": "office",
+        "description": "사용 흔적이 있지만 정상 작동합니다.",
+        "deals": []
+    },
+    {
+        "id": "48e285a6-558a-4398-bb90-c12846368368",
+        "imageSrc": [
+            "/assets/icons/others.png",
+            "/assets/icons/books.png",
+            "/assets/icons/electronics.png"
+        ],
+        "title": "others 상품 56",
+        "status": "reserved",
+        "condition": "bad",
+        "price": "37000",
+        "sellerName": "김철수",
+        "date": "2024-03-28",
+        "category": "others",
+        "description": "중고로 구매하셔야 합니다.",
+        "deals": [
+            {
+                "id": "de4d7910-df73-4dbc-91bd-5471cf98da6d",
+                "user": "홍길동",
+                "price": "16000",
+                "date": "2024-11-24",
+                "conditionType": "bad"
+            },
+            {
+                "id": "c1cfbffd-6059-4e63-bdd7-525d7d4f4ac2",
+                "user": "이영희",
+                "price": "26000",
+                "date": "2024-08-29",
+                "conditionType": "good"
+            },
+            {
+                "id": "97b3a673-f3d8-4a69-832e-92de5af4b51a",
+                "user": "박지수",
+                "price": "11000",
+                "date": "2024-08-19",
+                "conditionType": "average"
+            }
+        ]
+    },
+    {
+        "id": "4741bd8f-fc68-4c16-ada8-000d5ae1a386",
+        "imageSrc": [
+            "/assets/icons/mobility.png",
+            "/assets/icons/others.png",
+            "/assets/icons/books.png"
+        ],
+        "title": "mobility 상품 57",
+        "status": "reserved",
+        "condition": "bad",
+        "price": "42000",
+        "sellerName": "홍길동",
+        "date": "2024-10-31",
+        "category": "mobility",
+        "description": "사용 흔적이 있지만 정상 작동합니다.",
+        "deals": [
+            {
+                "id": "f196c53c-11bf-423c-bcd9-d7860865cc82",
+                "user": "홍길동",
+                "price": "13000",
+                "date": "2024-11-13",
+                "conditionType": "bad"
+            },
+            {
+                "id": "18fcd0af-692c-429e-a1a8-6e90e27610cf",
+                "user": "이영희",
+                "price": "16000",
+                "date": "2024-04-30",
+                "conditionType": "average"
+            }
+        ]
+    },
+    {
+        "id": "1a8525ac-38de-4dbe-afb5-6d0101dd952e",
+        "imageSrc": [
+            "/assets/icons/refrigerator.png",
+            "/assets/icons/electronics.png",
+            "/assets/icons/office.png"
+        ],
+        "title": "refrigerator 상품 58",
+        "status": "completed",
+        "condition": "bad",
+        "price": "10000",
+        "sellerName": "정민호",
+        "date": "2024-11-06",
+        "category": "refrigerator",
+        "description": "부품용으로 판매됩니다.",
+        "deals": [
+            {
+                "id": "88e36345-d8b5-46dc-a140-f3a02018dcf8",
+                "user": "김혜리",
+                "price": "42000",
+                "date": "2024-06-08",
+                "conditionType": "best"
+            }
+        ]
+    },
+    {
+        "id": "a9a571fe-676d-454f-94cb-7d0f86692d9d",
+        "imageSrc": [
+            "/assets/icons/electronics.png",
+            "/assets/icons/mobility.png",
+            "/assets/icons/others.png"
+        ],
+        "title": "electronics 상품 59",
+        "status": "reserved",
+        "condition": "average",
+        "price": "23000",
+        "sellerName": "박지수",
+        "date": "2024-10-06",
+        "category": "electronics",
+        "description": "부품용으로 판매됩니다.",
+        "deals": [
+            {
+                "id": "f0ea449c-52b3-4bba-9f54-8f132efb6dc6",
+                "user": "홍길동",
+                "price": "2000",
+                "date": "2024-04-20",
+                "conditionType": "bad"
+            },
+            {
+                "id": "19eaa1de-b2da-43cb-aa7b-675f4349b91e",
+                "user": "이영희",
+                "price": "22000",
+                "date": "2024-07-23",
+                "conditionType": "bad"
+            },
+            {
+                "id": "2692ac8c-8fc3-49d6-9247-c518ba4b4477",
+                "user": "박민호",
+                "price": "36000",
+                "date": "2024-12-01",
+                "conditionType": "very_bad"
+            }
+        ]
+    },
+    {
+        "id": "c9ffd454-b685-43f6-b32e-27877a711f2a",
+        "imageSrc": [
+            "/assets/icons/books.png",
+            "/assets/icons/others.png",
+            "/assets/icons/office.png"
+        ],
+        "title": "books 상품 60",
+        "status": "completed",
+        "condition": "best",
+        "price": "13000",
+        "sellerName": "박지수",
+        "date": "2024-09-13",
+        "category": "books",
+        "description": "거의 새 상품과 같은 상태입니다.",
+        "deals": [
+            {
+                "id": "fbbaabac-2a69-493a-af3a-924ed18ee3e9",
+                "user": "홍길동",
+                "price": "42000",
+                "date": "2024-10-28",
+                "conditionType": "bad"
+            }
+        ]
+    },
+    {
+        "id": "ee5923e7-fe03-4a22-8dec-a36108023332",
+        "imageSrc": [
+            "/assets/icons/gifticon.png",
+            "/assets/icons/office.png",
+            "/assets/icons/electronics.png"
+        ],
+        "title": "gifticon 상품 61",
+        "status": "completed",
+        "condition": "bad",
+        "price": "27000",
+        "sellerName": "김철수",
+        "date": "2024-09-20",
+        "category": "gifticon",
+        "description": "부품용으로 판매됩니다.",
+        "deals": [
+            {
+                "id": "d6910de0-a554-4a10-b04f-1dea0097632c",
+                "user": "김혜리",
+                "price": "8000",
+                "date": "2024-01-20",
+                "conditionType": "average"
+            }
+        ]
+    },
+    {
+        "id": "815a96f0-2fd5-4ca5-9d89-8486aa1f68fc",
+        "imageSrc": [
+            "/assets/icons/office.png",
+            "/assets/icons/others.png",
+            "/assets/icons/refrigerator.png"
+        ],
+        "title": "office 상품 62",
+        "status": "available",
+        "condition": "bad",
+        "price": "18000",
+        "sellerName": "박지수",
+        "date": "2024-12-06",
+        "category": "office",
+        "description": "사용 흔적이 있지만 정상 작동합니다.",
+        "deals": []
+    },
+    {
+        "id": "0a10234e-e021-464b-b7e6-02dab69396b5",
+        "imageSrc": [
+            "/assets/icons/others.png",
+            "/assets/icons/gifticon.png",
+            "/assets/icons/books.png"
+        ],
+        "title": "others 상품 63",
+        "status": "available",
+        "condition": "average",
+        "price": "11000",
+        "sellerName": "정민호",
+        "date": "2024-03-22",
+        "category": "others",
+        "description": "거의 새 상품과 같은 상태입니다.",
+        "deals": [
+            {
+                "id": "afdc2a59-3951-484d-8a98-1fee2d8c7096",
+                "user": "정민호",
+                "price": "11000",
+                "date": "2024-11-26",
+                "conditionType": "good"
+            }
+        ]
+    },
+    {
+        "id": "4692664e-009d-4a10-8ac9-f8a21e658fa6",
+        "imageSrc": [
+            "/assets/icons/mobility.png",
+            "/assets/icons/electronics.png",
+            "/assets/icons/books.png"
+        ],
+        "title": "mobility 상품 64",
+        "status": "completed",
+        "condition": "average",
+        "price": "41000",
+        "sellerName": "홍길동",
+        "date": "2024-06-27",
+        "category": "mobility",
+        "description": "거의 새 상품과 같은 상태입니다.",
+        "deals": [
+            {
+                "id": "7abb20b5-7f70-4ad4-8b6e-11e98d104d3c",
+                "user": "정민호",
+                "price": "43000",
+                "date": "2024-11-19",
+                "conditionType": "good"
+            },
+            {
+                "id": "3fe8f8eb-4b35-4d4b-8b87-00eb919044f9",
+                "user": "박민호",
+                "price": "39000",
+                "date": "2024-11-30",
+                "conditionType": "average"
+            },
+            {
+                "id": "11c4b65d-dc6e-4f09-bdd8-bb6582b808af",
+                "user": "박민호",
+                "price": "32000",
+                "date": "2024-07-05",
+                "conditionType": "good"
+            }
+        ]
+    },
+    {
+        "id": "09a59079-7d52-46de-ada0-8ec467d41d06",
+        "imageSrc": [
+            "/assets/icons/refrigerator.png",
+            "/assets/icons/gifticon.png",
+            "/assets/icons/books.png"
+        ],
+        "title": "refrigerator 상품 65",
+        "status": "reserved",
+        "condition": "best",
+        "price": "26000",
+        "sellerName": "홍길동",
+        "date": "2024-01-15",
+        "category": "refrigerator",
+        "description": "거의 새 상품과 같은 상태입니다.",
+        "deals": [
+            {
+                "id": "de6f9336-a381-40c3-a88a-bb2a698c2870",
+                "user": "정민호",
+                "price": "50000",
+                "date": "2024-01-27",
+                "conditionType": "good"
+            },
+            {
+                "id": "27aaedd9-1d4e-4fdd-a220-9c37bd080fc9",
+                "user": "정민호",
+                "price": "5000",
+                "date": "2024-12-24",
+                "conditionType": "average"
+            },
+            {
+                "id": "2b0d9e61-ba5e-4473-8c18-8adac68b2929",
+                "user": "이영희",
+                "price": "4000",
+                "date": "2024-10-13",
+                "conditionType": "bad"
+            }
+        ]
+    },
+    {
+        "id": "c50c45a3-6875-4907-8adc-653230ce206d",
+        "imageSrc": [
+            "/assets/icons/electronics.png",
+            "/assets/icons/office.png",
+            "/assets/icons/others.png"
+        ],
+        "title": "electronics 상품 66",
+        "status": "reserved",
+        "condition": "average",
+        "price": "28000",
+        "sellerName": "박지수",
+        "date": "2024-08-22",
+        "category": "electronics",
+        "description": "부품용으로 판매됩니다.",
+        "deals": [
+            {
+                "id": "c0f7d43d-4e17-46fb-adbc-83985a62dd6b",
+                "user": "박지수",
+                "price": "28000",
+                "date": "2024-12-10",
+                "conditionType": "good"
+            },
+            {
+                "id": "7f7fe117-0257-401e-b629-50cd14c26e22",
+                "user": "박민호",
+                "price": "20000",
+                "date": "2024-02-03",
+                "conditionType": "good"
+            },
+            {
+                "id": "e5d3e1e9-6683-4666-acef-dc919c368adc",
+                "user": "박민호",
+                "price": "39000",
+                "date": "2024-02-19",
+                "conditionType": "good"
+            }
+        ]
+    },
+    {
+        "id": "7904e19a-16ed-4259-af98-f37f01b713f3",
+        "imageSrc": [
+            "/assets/icons/books.png",
+            "/assets/icons/refrigerator.png",
+            "/assets/icons/electronics.png"
+        ],
+        "title": "books 상품 67",
+        "status": "completed",
+        "condition": "very_bad",
+        "price": "21000",
+        "sellerName": "박민호",
+        "date": "2024-01-31",
+        "category": "books",
+        "description": "상품 상태가 양호합니다.",
+        "deals": [
+            {
+                "id": "7d860431-6e17-463e-b4c6-6e06e83c21a7",
+                "user": "박민호",
+                "price": "50000",
+                "date": "2024-06-23",
+                "conditionType": "very_bad"
+            },
+            {
+                "id": "16b50ed5-017e-4b5a-a92f-7b0296b8a978",
+                "user": "박지수",
+                "price": "49000",
+                "date": "2024-07-08",
+                "conditionType": "bad"
+            },
+            {
+                "id": "1f7030c2-efc7-4d92-acc7-d3816da39226",
+                "user": "정민호",
+                "price": "25000",
+                "date": "2024-06-02",
+                "conditionType": "good"
+            }
+        ]
+    },
+    {
+        "id": "9a18907f-2c69-418b-a030-f678aa1552ec",
+        "imageSrc": [
+            "/assets/icons/gifticon.png",
+            "/assets/icons/office.png",
+            "/assets/icons/mobility.png"
+        ],
+        "title": "gifticon 상품 68",
+        "status": "reserved",
+        "condition": "average",
+        "price": "10000",
+        "sellerName": "박지수",
+        "date": "2024-11-24",
+        "category": "gifticon",
+        "description": "상품 상태가 양호합니다.",
+        "deals": [
+            {
+                "id": "4ddf9d47-925f-4040-836e-e60f2310e0c6",
+                "user": "박지수",
+                "price": "48000",
+                "date": "2024-11-30",
+                "conditionType": "very_bad"
+            },
+            {
+                "id": "b6235249-24a3-4969-a190-b97311d27d1f",
+                "user": "김혜리",
+                "price": "37000",
+                "date": "2024-05-13",
+                "conditionType": "good"
+            },
+            {
+                "id": "ed577686-cff0-4a4e-b0d1-898cee66bc14",
+                "user": "김철수",
+                "price": "50000",
+                "date": "2024-09-11",
+                "conditionType": "bad"
+            }
+        ]
+    },
+    {
+        "id": "db656bde-4033-4dab-a65d-9b7cda9f29e5",
+        "imageSrc": [
+            "/assets/icons/office.png",
+            "/assets/icons/electronics.png",
+            "/assets/icons/books.png"
+        ],
+        "title": "office 상품 69",
+        "status": "completed",
+        "condition": "good",
+        "price": "26000",
+        "sellerName": "이영희",
+        "date": "2024-04-26",
+        "category": "office",
+        "description": "중고로 구매하셔야 합니다.",
+        "deals": [
+            {
+                "id": "644e8d9a-aea1-46e2-9602-53cb967b5600",
+                "user": "박지수",
+                "price": "20000",
+                "date": "2024-11-22",
+                "conditionType": "good"
+            }
+        ]
+    },
+    {
+        "id": "dc1b2d43-0d2f-4e76-83f0-425fd08149af",
+        "imageSrc": [
+            "/assets/icons/others.png",
+            "/assets/icons/refrigerator.png",
+            "/assets/icons/office.png"
+        ],
+        "title": "others 상품 70",
+        "status": "completed",
+        "condition": "good",
+        "price": "25000",
+        "sellerName": "박민호",
+        "date": "2024-05-27",
+        "category": "others",
+        "description": "사용 흔적이 있지만 정상 작동합니다.",
+        "deals": []
+    },
+    {
+        "id": "9d043077-6d52-4050-898e-9188db80e24a",
+        "imageSrc": [
+            "/assets/icons/mobility.png",
+            "/assets/icons/refrigerator.png",
+            "/assets/icons/books.png"
+        ],
+        "title": "mobility 상품 71",
+        "status": "completed",
+        "condition": "very_bad",
+        "price": "17000",
+        "sellerName": "박민호",
+        "date": "2024-06-02",
+        "category": "mobility",
+        "description": "부품용으로 판매됩니다.",
+        "deals": [
+            {
+                "id": "4d76c291-23b6-440a-8355-b136bfc718c6",
+                "user": "박지수",
+                "price": "19000",
+                "date": "2024-08-16",
+                "conditionType": "good"
+            },
+            {
+                "id": "9613c8ed-f1e3-427a-a890-4f017afca17d",
+                "user": "홍길동",
+                "price": "2000",
+                "date": "2024-08-23",
+                "conditionType": "best"
+            },
+            {
+                "id": "3c7021f5-b712-4763-aede-cee70275c1a6",
+                "user": "박지수",
+                "price": "40000",
+                "date": "2024-02-27",
+                "conditionType": "average"
+            }
+        ]
+    },
+    {
+        "id": "52d8119b-727f-4314-9cce-1acd750a775f",
+        "imageSrc": [
+            "/assets/icons/refrigerator.png",
+            "/assets/icons/office.png",
+            "/assets/icons/gifticon.png"
+        ],
+        "title": "refrigerator 상품 72",
+        "status": "available",
+        "condition": "good",
+        "price": "25000",
+        "sellerName": "홍길동",
+        "date": "2024-03-09",
+        "category": "refrigerator",
+        "description": "상품 상태가 양호합니다.",
+        "deals": [
+            {
+                "id": "953dea47-69cf-42f0-991f-57ff9a325e13",
+                "user": "김혜리",
+                "price": "47000",
+                "date": "2024-02-15",
+                "conditionType": "good"
+            },
+            {
+                "id": "9de39c01-11c3-4c2e-bc81-4c31aaf1bc7c",
+                "user": "박지수",
+                "price": "33000",
+                "date": "2024-12-02",
+                "conditionType": "very_bad"
+            },
+            {
+                "id": "305f8d40-8ead-4dad-93a9-7472d49f1b9c",
+                "user": "박민호",
+                "price": "44000",
+                "date": "2024-12-03",
+                "conditionType": "very_bad"
+            }
+        ]
+    },
+    {
+        "id": "12c39629-82ba-4a90-b1fd-4bf2fd130871",
+        "imageSrc": [
+            "/assets/icons/electronics.png",
+            "/assets/icons/others.png",
+            "/assets/icons/gifticon.png"
+        ],
+        "title": "electronics 상품 73",
+        "status": "available",
+        "condition": "average",
+        "price": "42000",
+        "sellerName": "김철수",
+        "date": "2024-03-03",
+        "category": "electronics",
+        "description": "사용 흔적이 있지만 정상 작동합니다.",
+        "deals": [
+            {
+                "id": "369611c4-bca9-4576-89e3-2756ae9cb6a6",
+                "user": "김혜리",
+                "price": "6000",
+                "date": "2024-11-26",
+                "conditionType": "best"
+            },
+            {
+                "id": "806fd421-1209-4d66-9f24-7a8be30bf0b8",
+                "user": "박지수",
+                "price": "7000",
+                "date": "2024-12-04",
+                "conditionType": "good"
+            }
+        ]
+    },
+    {
+        "id": "b0e7069a-5d11-438f-a352-fd358185895d",
+        "imageSrc": [
+            "/assets/icons/books.png",
+            "/assets/icons/others.png",
+            "/assets/icons/electronics.png"
+        ],
+        "title": "books 상품 74",
+        "status": "available",
+        "condition": "average",
+        "price": "38000",
+        "sellerName": "이영희",
+        "date": "2024-07-04",
+        "category": "books",
+        "description": "거의 새 상품과 같은 상태입니다.",
+        "deals": [
+            {
+                "id": "6aaf2737-57ce-4d8b-9aae-002a31e31309",
+                "user": "김혜리",
+                "price": "43000",
+                "date": "2024-06-15",
+                "conditionType": "average"
+            },
+            {
+                "id": "1df39247-2540-4d1a-add7-04e5efaf581c",
+                "user": "박민호",
+                "price": "8000",
+                "date": "2024-10-27",
+                "conditionType": "best"
+            },
+            {
+                "id": "c02899f9-ccba-46b6-be7a-a34e719553cc",
+                "user": "이영희",
+                "price": "38000",
+                "date": "2024-01-31",
+                "conditionType": "good"
+            }
+        ]
+    },
+    {
+        "id": "a336a94f-b91e-4d25-b982-43fc9d479076",
+        "imageSrc": [
+            "/assets/icons/gifticon.png",
+            "/assets/icons/mobility.png",
+            "/assets/icons/electronics.png"
+        ],
+        "title": "gifticon 상품 75",
+        "status": "completed",
+        "condition": "best",
+        "price": "29000",
+        "sellerName": "김철수",
+        "date": "2024-10-11",
+        "category": "gifticon",
+        "description": "중고로 구매하셔야 합니다.",
+        "deals": [
+            {
+                "id": "5fbb7b28-7e3e-4d3e-8109-3ce6dcf6c77a",
+                "user": "홍길동",
+                "price": "47000",
+                "date": "2024-07-30",
+                "conditionType": "bad"
+            }
+        ]
+    },
+    {
+        "id": "996dacf4-26ce-45db-8ef5-872b765a46fc",
+        "imageSrc": [
+            "/assets/icons/office.png",
+            "/assets/icons/electronics.png",
+            "/assets/icons/books.png"
+        ],
+        "title": "office 상품 76",
+        "status": "reserved",
+        "condition": "best",
+        "price": "38000",
+        "sellerName": "이영희",
+        "date": "2024-04-10",
+        "category": "office",
+        "description": "상품 상태가 양호합니다.",
+        "deals": [
+            {
+                "id": "4a298870-cef9-4247-bf92-28afad78404c",
+                "user": "박민호",
+                "price": "44000",
+                "date": "2024-02-23",
+                "conditionType": "bad"
+            }
+        ]
+    },
+    {
+        "id": "8a1e9076-7cd5-41e6-b3e2-97b9ea8eb8d7",
+        "imageSrc": [
+            "/assets/icons/others.png",
+            "/assets/icons/refrigerator.png",
+            "/assets/icons/gifticon.png"
+        ],
+        "title": "others 상품 77",
+        "status": "available",
+        "condition": "bad",
+        "price": "11000",
+        "sellerName": "홍길동",
+        "date": "2024-09-30",
+        "category": "others",
+        "description": "부품용으로 판매됩니다.",
+        "deals": [
+            {
+                "id": "2c7d9436-8c44-4fa3-90da-055209d2e014",
+                "user": "김혜리",
+                "price": "38000",
+                "date": "2024-05-31",
+                "conditionType": "bad"
+            },
+            {
+                "id": "884ff39a-246d-4fcf-a526-9f6bc5752d53",
+                "user": "박민호",
+                "price": "41000",
+                "date": "2024-08-13",
+                "conditionType": "bad"
+            },
+            {
+                "id": "ef244fff-5b59-4610-9c3d-f91ca4d8c5fd",
+                "user": "김혜리",
+                "price": "17000",
+                "date": "2024-10-10",
+                "conditionType": "best"
+            }
+        ]
+    },
+    {
+        "id": "17f8f08c-2dd2-4477-acd1-04969ba60012",
+        "imageSrc": [
+            "/assets/icons/mobility.png",
+            "/assets/icons/office.png",
+            "/assets/icons/gifticon.png"
+        ],
+        "title": "mobility 상품 78",
+        "status": "completed",
+        "condition": "bad",
+        "price": "20000",
+        "sellerName": "김철수",
+        "date": "2024-10-31",
+        "category": "mobility",
+        "description": "사용 흔적이 있지만 정상 작동합니다.",
+        "deals": [
+            {
+                "id": "44e47815-14b4-4e7e-91f0-4b8ec96af3eb",
+                "user": "이영희",
+                "price": "11000",
+                "date": "2024-12-31",
+                "conditionType": "good"
+            }
+        ]
+    },
+    {
+        "id": "eea59bba-826e-4f5a-b5d9-e688e089e39a",
+        "imageSrc": [
+            "/assets/icons/refrigerator.png",
+            "/assets/icons/books.png",
+            "/assets/icons/mobility.png"
+        ],
+        "title": "refrigerator 상품 79",
+        "status": "completed",
+        "condition": "bad",
+        "price": "24000",
+        "sellerName": "이영희",
+        "date": "2024-01-27",
+        "category": "refrigerator",
+        "description": "상품 상태가 양호합니다.",
+        "deals": [
+            {
+                "id": "aab39c0b-9732-47b1-8e91-62e2a6699283",
+                "user": "박민호",
+                "price": "15000",
+                "date": "2024-12-26",
+                "conditionType": "good"
+            }
+        ]
+    },
+    {
+        "id": "6f8831ef-d035-4d34-89c7-3b3b5ff1dfae",
+        "imageSrc": [
+            "/assets/icons/electronics.png",
+            "/assets/icons/others.png",
+            "/assets/icons/office.png"
+        ],
+        "title": "electronics 상품 80",
+        "status": "reserved",
+        "condition": "very_bad",
+        "price": "34000",
+        "sellerName": "김철수",
+        "date": "2024-02-02",
+        "category": "electronics",
+        "description": "사용 흔적이 있지만 정상 작동합니다.",
+        "deals": [
+            {
+                "id": "dc2f15ce-17ee-4dfd-b037-fea0f765f557",
+                "user": "김혜리",
+                "price": "46000",
+                "date": "2024-06-28",
+                "conditionType": "average"
+            }
+        ]
+    },
+    {
+        "id": "c4ad247c-0308-407c-9251-0f4c5fe7ae29",
+        "imageSrc": [
+            "/assets/icons/books.png",
+            "/assets/icons/gifticon.png",
+            "/assets/icons/mobility.png"
+        ],
+        "title": "books 상품 81",
+        "status": "available",
+        "condition": "average",
+        "price": "41000",
+        "sellerName": "박민호",
+        "date": "2024-04-29",
+        "category": "books",
+        "description": "거의 새 상품과 같은 상태입니다.",
+        "deals": [
+            {
+                "id": "010d3a64-c78a-45cd-a7e8-986375e38163",
+                "user": "정민호",
+                "price": "13000",
+                "date": "2024-06-15",
+                "conditionType": "average"
+            },
+            {
+                "id": "6e1013fb-4324-4210-847d-2302b0cdee4d",
+                "user": "박민호",
+                "price": "13000",
+                "date": "2024-08-17",
+                "conditionType": "bad"
+            },
+            {
+                "id": "bf11b65a-440d-4b0c-999c-863dd2a855b6",
+                "user": "홍길동",
+                "price": "27000",
+                "date": "2024-09-18",
+                "conditionType": "average"
+            }
+        ]
+    },
+    {
+        "id": "1acb7d27-96d9-4f1b-a86b-7eadf0e9a6c3",
+        "imageSrc": [
+            "/assets/icons/gifticon.png",
+            "/assets/icons/others.png",
+            "/assets/icons/office.png"
+        ],
+        "title": "gifticon 상품 82",
+        "status": "available",
+        "condition": "good",
+        "price": "44000",
+        "sellerName": "정민호",
+        "date": "2024-01-31",
+        "category": "gifticon",
+        "description": "부품용으로 판매됩니다.",
+        "deals": []
+    },
+    {
+        "id": "4c470951-a916-419e-b3b5-f09ae3de98d3",
+        "imageSrc": [
+            "/assets/icons/office.png",
+            "/assets/icons/refrigerator.png",
+            "/assets/icons/books.png"
+        ],
+        "title": "office 상품 83",
+        "status": "available",
+        "condition": "good",
+        "price": "18000",
+        "sellerName": "김혜리",
+        "date": "2024-02-08",
+        "category": "office",
+        "description": "사용 흔적이 있지만 정상 작동합니다.",
+        "deals": [
+            {
+                "id": "ab5b9536-7eed-471d-8259-9d208d691010",
+                "user": "박민호",
+                "price": "36000",
+                "date": "2024-07-27",
+                "conditionType": "average"
+            },
+            {
+                "id": "5b8a83b5-67c3-4608-9e12-f87811bf66a1",
+                "user": "김철수",
+                "price": "39000",
+                "date": "2024-08-05",
+                "conditionType": "bad"
+            }
+        ]
+    },
+    {
+        "id": "e43c5a68-b5da-441e-ad04-bdb85064b31c",
+        "imageSrc": [
+            "/assets/icons/others.png",
+            "/assets/icons/books.png",
+            "/assets/icons/office.png"
+        ],
+        "title": "others 상품 84",
+        "status": "reserved",
+        "condition": "average",
+        "price": "7000",
+        "sellerName": "김혜리",
+        "date": "2024-01-11",
+        "category": "others",
+        "description": "중고로 구매하셔야 합니다.",
+        "deals": [
+            {
+                "id": "baea132b-eeb4-43b8-89fb-e460ed31e253",
+                "user": "홍길동",
+                "price": "50000",
+                "date": "2024-08-06",
+                "conditionType": "bad"
+            },
+            {
+                "id": "494ca022-49cd-43f5-86f3-57f8b543da6f",
+                "user": "박지수",
+                "price": "39000",
+                "date": "2024-07-06",
+                "conditionType": "best"
+            }
+        ]
+    },
+    {
+        "id": "6ea8d957-23d3-4e61-adef-21aaceeca092",
+        "imageSrc": [
+            "/assets/icons/mobility.png",
+            "/assets/icons/office.png",
+            "/assets/icons/others.png"
+        ],
+        "title": "mobility 상품 85",
+        "status": "available",
+        "condition": "very_bad",
+        "price": "1000",
+        "sellerName": "박민호",
+        "date": "2024-03-22",
+        "category": "mobility",
+        "description": "거의 새 상품과 같은 상태입니다.",
+        "deals": [
+            {
+                "id": "eb2f7384-cebb-4168-a424-c98e143387a2",
+                "user": "홍길동",
+                "price": "46000",
+                "date": "2024-11-24",
+                "conditionType": "bad"
+            }
+        ]
+    },
+    {
+        "id": "5591f00b-8621-4250-851e-4381c5a26f59",
+        "imageSrc": [
+            "/assets/icons/refrigerator.png",
+            "/assets/icons/others.png",
+            "/assets/icons/mobility.png"
+        ],
+        "title": "refrigerator 상품 86",
+        "status": "reserved",
+        "condition": "average",
+        "price": "45000",
+        "sellerName": "박지수",
+        "date": "2024-09-23",
+        "category": "refrigerator",
+        "description": "거의 새 상품과 같은 상태입니다.",
+        "deals": [
+            {
+                "id": "309be31f-c729-4228-87a2-4af5307588f8",
+                "user": "김혜리",
+                "price": "17000",
+                "date": "2024-08-15",
+                "conditionType": "very_bad"
+            }
+        ]
+    },
+    {
+        "id": "77c63cb3-f245-4131-9d5f-0a60a6714bbf",
+        "imageSrc": [
+            "/assets/icons/electronics.png",
+            "/assets/icons/books.png",
+            "/assets/icons/gifticon.png"
+        ],
+        "title": "electronics 상품 87",
+        "status": "available",
+        "condition": "bad",
+        "price": "41000",
+        "sellerName": "홍길동",
+        "date": "2024-06-04",
+        "category": "electronics",
+        "description": "중고로 구매하셔야 합니다.",
+        "deals": [
+            {
+                "id": "48a681a0-df8b-40f1-9549-dd2cdbebcda6",
+                "user": "정민호",
+                "price": "19000",
+                "date": "2024-06-04",
+                "conditionType": "bad"
+            }
+        ]
+    },
+    {
+        "id": "44ee8019-a1a4-40cc-96a9-3676ef699e9e",
+        "imageSrc": [
+            "/assets/icons/books.png",
+            "/assets/icons/refrigerator.png",
+            "/assets/icons/electronics.png"
+        ],
+        "title": "books 상품 88",
+        "status": "available",
+        "condition": "average",
+        "price": "35000",
+        "sellerName": "박지수",
+        "date": "2024-09-02",
+        "category": "books",
+        "description": "상품 상태가 양호합니다.",
+        "deals": [
+            {
+                "id": "724bddab-04c8-484a-ba3f-5add74e2c59d",
+                "user": "김철수",
+                "price": "49000",
+                "date": "2024-04-27",
+                "conditionType": "average"
+            }
+        ]
+    },
+    {
+        "id": "adde22c6-8fee-41a6-8eb4-d02831fe7308",
+        "imageSrc": [
+            "/assets/icons/gifticon.png",
+            "/assets/icons/books.png",
+            "/assets/icons/office.png"
+        ],
+        "title": "gifticon 상품 89",
+        "status": "available",
+        "condition": "very_bad",
+        "price": "33000",
+        "sellerName": "이영희",
+        "date": "2024-02-15",
+        "category": "gifticon",
+        "description": "부품용으로 판매됩니다.",
+        "deals": [
+            {
+                "id": "6baa615b-8c3b-4ed2-81fa-4a85fa9052d4",
+                "user": "정민호",
+                "price": "39000",
+                "date": "2024-04-06",
+                "conditionType": "best"
+            },
+            {
+                "id": "a21abd34-65ff-48c6-9589-becb617bf43b",
+                "user": "홍길동",
+                "price": "3000",
+                "date": "2024-03-22",
+                "conditionType": "bad"
+            }
+        ]
+    },
+    {
+        "id": "6d8ad861-2a34-4539-9614-61473a0b2a7c",
+        "imageSrc": [
+            "/assets/icons/office.png",
+            "/assets/icons/books.png",
+            "/assets/icons/electronics.png"
+        ],
+        "title": "office 상품 90",
+        "status": "available",
+        "condition": "good",
+        "price": "4000",
+        "sellerName": "박지수",
+        "date": "2024-06-15",
+        "category": "office",
+        "description": "거의 새 상품과 같은 상태입니다.",
+        "deals": []
+    },
+    {
+        "id": "46047f2f-d30f-4552-bf56-6aea225caa0f",
+        "imageSrc": [
+            "/assets/icons/others.png",
+            "/assets/icons/gifticon.png",
+            "/assets/icons/office.png"
+        ],
+        "title": "others 상품 91",
+        "status": "completed",
+        "condition": "average",
+        "price": "28000",
+        "sellerName": "김철수",
+        "date": "2024-07-01",
+        "category": "others",
+        "description": "상품 상태가 양호합니다.",
+        "deals": [
+            {
+                "id": "107590b7-79ed-4378-a914-a7c532fe2989",
+                "user": "박민호",
+                "price": "37000",
+                "date": "2024-12-05",
+                "conditionType": "best"
+            },
+            {
+                "id": "e38b9daf-d184-4fdf-ba18-b2f445f31c68",
+                "user": "김혜리",
+                "price": "29000",
+                "date": "2024-09-07",
+                "conditionType": "bad"
+            },
+            {
+                "id": "641a19de-9e04-4f91-a7f2-4e93169b8dd1",
+                "user": "김혜리",
+                "price": "14000",
+                "date": "2024-01-23",
+                "conditionType": "very_bad"
+            }
+        ]
+    },
+    {
+        "id": "1f08cbf8-2e05-449e-a4c0-0018a569676d",
+        "imageSrc": [
+            "/assets/icons/mobility.png",
+            "/assets/icons/electronics.png",
+            "/assets/icons/books.png"
+        ],
+        "title": "mobility 상품 92",
+        "status": "completed",
+        "condition": "bad",
+        "price": "16000",
+        "sellerName": "김혜리",
+        "date": "2024-01-31",
+        "category": "mobility",
+        "description": "사용 흔적이 있지만 정상 작동합니다.",
+        "deals": []
+    },
+    {
+        "id": "95acc9e4-8e87-474a-a5b5-98f43307167b",
+        "imageSrc": [
+            "/assets/icons/refrigerator.png",
+            "/assets/icons/books.png",
+            "/assets/icons/gifticon.png"
+        ],
+        "title": "refrigerator 상품 93",
+        "status": "available",
+        "condition": "bad",
+        "price": "2000",
+        "sellerName": "박지수",
+        "date": "2024-09-20",
+        "category": "refrigerator",
+        "description": "부품용으로 판매됩니다.",
+        "deals": [
+            {
+                "id": "5dd14c62-de77-4acf-a740-772f9240c8b9",
+                "user": "박지수",
+                "price": "21000",
+                "date": "2024-02-12",
+                "conditionType": "very_bad"
+            }
+        ]
+    },
+    {
+        "id": "0def2f5b-7070-4e85-b9c2-773231ef1ece",
+        "imageSrc": [
+            "/assets/icons/electronics.png",
+            "/assets/icons/books.png",
+            "/assets/icons/gifticon.png"
+        ],
+        "title": "electronics 상품 94",
+        "status": "completed",
+        "condition": "bad",
+        "price": "43000",
+        "sellerName": "이영희",
+        "date": "2024-11-11",
+        "category": "electronics",
+        "description": "거의 새 상품과 같은 상태입니다.",
+        "deals": [
+            {
+                "id": "3ebcbad5-c3c9-42cb-a771-e77e69a01636",
+                "user": "이영희",
+                "price": "36000",
+                "date": "2024-11-08",
+                "conditionType": "very_bad"
+            },
+            {
+                "id": "639e1a8f-1705-4e8b-acba-dd86b768afd4",
+                "user": "홍길동",
+                "price": "26000",
+                "date": "2024-01-19",
+                "conditionType": "very_bad"
+            }
+        ]
+    },
+    {
+        "id": "7ea00e0a-2038-4828-bb1f-6fb7d4a83ea7",
+        "imageSrc": [
+            "/assets/icons/books.png",
+            "/assets/icons/refrigerator.png",
+            "/assets/icons/office.png"
+        ],
+        "title": "books 상품 95",
+        "status": "available",
+        "condition": "average",
+        "price": "17000",
+        "sellerName": "김철수",
+        "date": "2024-04-24",
+        "category": "books",
+        "description": "중고로 구매하셔야 합니다.",
+        "deals": [
+            {
+                "id": "9d1cb372-b2e0-4dba-8dab-745f7260e737",
+                "user": "김철수",
+                "price": "12000",
+                "date": "2024-09-01",
+                "conditionType": "bad"
+            },
+            {
+                "id": "451f1821-12da-48b1-bd8a-42954945bf05",
+                "user": "김철수",
+                "price": "3000",
+                "date": "2025-01-05",
+                "conditionType": "average"
+            },
+            {
+                "id": "351c373b-048f-46e9-8341-07abb766f3d3",
+                "user": "홍길동",
+                "price": "13000",
+                "date": "2024-10-25",
+                "conditionType": "very_bad"
+            }
+        ]
+    },
+    {
+        "id": "3d51c0f4-38c1-4904-afdb-5aa42cdbe858",
+        "imageSrc": [
+            "/assets/icons/gifticon.png",
+            "/assets/icons/others.png",
+            "/assets/icons/books.png"
+        ],
+        "title": "gifticon 상품 96",
+        "status": "reserved",
+        "condition": "bad",
+        "price": "46000",
+        "sellerName": "김철수",
+        "date": "2024-09-16",
+        "category": "gifticon",
+        "description": "상품 상태가 양호합니다.",
+        "deals": [
+            {
+                "id": "108cffa2-a07d-47e4-8ce3-c92d7b9a183d",
+                "user": "김철수",
+                "price": "8000",
+                "date": "2024-09-26",
+                "conditionType": "average"
+            },
+            {
+                "id": "8810df48-bea2-4fd8-8d59-cc06b2f64bd5",
+                "user": "박지수",
+                "price": "3000",
+                "date": "2024-04-30",
+                "conditionType": "good"
+            },
+            {
+                "id": "3dd91084-a366-4c78-9278-8f1462a3b896",
+                "user": "박지수",
+                "price": "10000",
+                "date": "2024-10-23",
+                "conditionType": "good"
+            }
+        ]
+    },
+    {
+        "id": "6ca59263-7cf3-4f43-b035-c777cc96a6eb",
+        "imageSrc": [
+            "/assets/icons/office.png",
+            "/assets/icons/refrigerator.png",
+            "/assets/icons/books.png"
+        ],
+        "title": "office 상품 97",
+        "status": "reserved",
+        "condition": "good",
+        "price": "6000",
+        "sellerName": "박민호",
+        "date": "2024-05-06",
+        "category": "office",
+        "description": "상품 상태가 양호합니다.",
+        "deals": [
+            {
+                "id": "e8f71a75-a159-4d2b-9eca-7e0baeece8f8",
+                "user": "이영희",
+                "price": "15000",
+                "date": "2024-07-19",
+                "conditionType": "very_bad"
+            },
+            {
+                "id": "bd51a1f2-be6d-4797-9716-60fb4dab49ce",
+                "user": "김철수",
+                "price": "7000",
+                "date": "2024-11-15",
+                "conditionType": "best"
+            }
+        ]
+    },
+    {
+        "id": "74190f8c-bec3-4f47-9bac-6ab6936ef6c4",
+        "imageSrc": [
+            "/assets/icons/others.png",
+            "/assets/icons/books.png",
+            "/assets/icons/electronics.png"
+        ],
+        "title": "others 상품 98",
+        "status": "available",
+        "condition": "good",
+        "price": "31000",
+        "sellerName": "박지수",
+        "date": "2024-01-11",
+        "category": "others",
+        "description": "부품용으로 판매됩니다.",
+        "deals": [
+            {
+                "id": "48b422f3-55d7-41c5-bff4-73e452612cdb",
+                "user": "이영희",
+                "price": "19000",
+                "date": "2024-11-20",
+                "conditionType": "bad"
+            },
+            {
+                "id": "66f8c947-795c-4913-aa4d-e3f054360739",
+                "user": "이영희",
+                "price": "36000",
+                "date": "2024-06-22",
+                "conditionType": "bad"
+            }
+        ]
+    },
+    {
+        "id": "3cc048d8-e3e7-41fa-89e6-eefcc1332eee",
+        "imageSrc": [
+            "/assets/icons/mobility.png",
+            "/assets/icons/gifticon.png",
+            "/assets/icons/books.png"
+        ],
+        "title": "mobility 상품 99",
+        "status": "available",
+        "condition": "good",
+        "price": "45000",
+        "sellerName": "박지수",
+        "date": "2025-01-03",
+        "category": "mobility",
+        "description": "사용 흔적이 있지만 정상 작동합니다.",
+        "deals": [
+            {
+                "id": "c8ec9a9f-ba6a-417a-a43b-69e8c88614c3",
+                "user": "이영희",
+                "price": "30000",
+                "date": "2024-05-03",
+                "conditionType": "average"
+            }
+        ]
+    },
+    {
+        "id": "52b87942-8a10-4376-b4db-549077ce7940",
+        "imageSrc": [
+            "/assets/icons/refrigerator.png",
+            "/assets/icons/others.png",
+            "/assets/icons/books.png"
+        ],
+        "title": "refrigerator 상품 100",
+        "status": "reserved",
+        "condition": "best",
+        "price": "18000",
+        "sellerName": "박지수",
+        "date": "2024-11-09",
+        "category": "refrigerator",
+        "description": "거의 새 상품과 같은 상태입니다.",
+        "deals": []
+    }
+]

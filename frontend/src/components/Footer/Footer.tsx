@@ -5,15 +5,10 @@ import {
   FooterNav,
   FooterNavItem,
 } from "./Footer.styles";
-
-// 1) Move the function above or below your component
-const resetMerchandises = () => {
-  localStorage.removeItem("merchandises");
-  window.location.reload(); 
-  // or any other action
-};
+import { useMerchandise } from "../../context/MerchandiseContext";
 
 const Footer = () => {
+  const { resetMerchandises } = useMerchandise();
 
   const handleGithub = () => {
     window.open("https://github.com/ksiwon/hunter", "_blank");
@@ -21,7 +16,7 @@ const Footer = () => {
 
   const handleDeveloper = () => {
     alert("KAIST 전산학부 박정원\nSMMU 인공지능공학부 최인하");
-  }
+  };
 
   return (
     <FooterContainer>

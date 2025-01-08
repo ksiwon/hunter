@@ -1,4 +1,3 @@
-// src/App.tsx
 import React from "react";
 import { ThemeProvider } from "styled-components";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
@@ -8,48 +7,38 @@ import Item from "./pages/Item";
 import theme from "./styles/theme";
 import GlobalStyle from "./styles/GlobalStyle";
 import Sell from "./pages/Sell";
-
 import KakaoCallback from "./pages/kakaoCallback";
-
 import { MerchandiseProvider } from "./context/MerchandiseContext";
+import { UserProvider } from "./context/UserContext";
 import Mydeal from "./pages/Mydeal";
 
-// Remove the AuthProvider import
-// import { AuthProvider } from "./components/Header/Header";
-
 const App: React.FC = () => {
-  return (
-    <ThemeProvider theme={theme}>
-      <GlobalStyle />
-
-      {/* Remove AuthProvider */}
-      <MerchandiseProvider>
-        <Router>
-          <Routes>
-            {/* 홈 페이지 */}
-            <Route path="/" element={<Home />} />
-            {/* 카테고리별 콘텐츠 페이지 */}
-            <Route path="/content/:category" element={<Content />} />
-            {/* 아이템 상세 페이지 */}
-            <Route path="/content/:category/:id" element={<Item />} />
-            {/* 판매하기 페이지 */}
-            <Route path="/sell" element={<Sell />} />
-            {/* 나의 거래 페이지 */}
-            <Route path="/mydeal" element={<Mydeal />} />
-            <Route path="/auth/kakao/callback" element={<KakaoCallback />} />
-            {/* Catch-all route for undefined paths */}
-            <Route path="*" element={<NotFound />} />
-          </Routes>
-        </Router>
-      </MerchandiseProvider>
-    </ThemeProvider>
-  );
+    return (
+        <ThemeProvider theme={theme}>
+            <GlobalStyle />
+              <UserProvider>
+                  <MerchandiseProvider>
+                      <Router>
+                          <Routes>
+                              <Route path="/" element={<Home />} />
+                              <Route path="/content/:category" element={<Content />} />
+                              <Route path="/content/:category/:id" element={<Item />} />
+                              <Route path="/sell" element={<Sell />} />
+                              <Route path="/mydeal" element={<Mydeal />} />
+                              <Route path="/auth/kakao/callback" element={<KakaoCallback />} />
+                              <Route path="*" element={<NotFound />} />
+                          </Routes>
+                      </Router>
+                  </MerchandiseProvider>
+              </UserProvider>
+        </ThemeProvider>
+    );
 };
 
 const NotFound: React.FC = () => (
-  <div style={{ textAlign: "center", marginTop: "50px" }}>
-    <h1>404 - 페이지를 찾을 수 없습니다.</h1>
-  </div>
+    <div style={{ textAlign: "center", marginTop: "50px" }}>
+        <h1>404 - 페이지를 찾을 수 없습니다.</h1>
+    </div>
 );
 
 export default App;

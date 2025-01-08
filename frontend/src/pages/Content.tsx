@@ -18,13 +18,18 @@ const Content: React.FC = () => {
   const searchParams = new URLSearchParams(location.search);
   const initialSearchQuery = searchParams.get("search") || "";
 
-  const { merchandises } = useMerchandise(); // Use merchandises from context
+  const { merchandises, setMerchandises } = useMerchandise(); // Use merchandises and setter from context
 
   const [searchQuery, setSearchQuery] = useState<string>(initialSearchQuery); // 검색어 상태 관리
   const [showAvailableOnly, setShowAvailableOnly] = useState<boolean>(false); // 거래 가능 여부 상태 관리
   const [currentPage, setCurrentPage] = useState<number>(1); // 현재 페이지 상태 관리
   const [clickedCategory, setClickedCategory] = useState<string | null>(category || null); // Navigation 클릭 상태 관리
   const itemsPerPage = 10; // 페이지당 아이템 수
+
+  useEffect(() => {
+    // 불필요한 fetchMerchandises 호출 제거
+    // 데이터를 MerchandiseContext에서 관리
+  }, [setMerchandises]);
 
   // 검색 콜백 함수
   const handleSearch = (query: string) => {
@@ -58,22 +63,6 @@ const Content: React.FC = () => {
     }
   };
 
-  // category 또는 toggle 상태 변경 시 1페이지로 이동
-  useEffect(() => {
-    setCurrentPage(1);
-  }, [clickedCategory, showAvailableOnly]);
-
-  // category 변경 시 searchQuery 리셋을 URL에 반영
-  useEffect(() => {
-    if (!searchQuery) {
-      // If searchQuery is empty, ensure URL does not have search parameter
-      if (location.search.includes("search")) {
-        navigate(`/content/${clickedCategory || "all"}`, { replace: true });
-      }
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [searchQuery]);
-
   // 카테고리, 검색어, 거래 가능 여부에 따른 필터링
   const filteredMerchandises = useMemo(() => {
     return merchandises.filter((item) => {
@@ -104,65 +93,41 @@ const Content: React.FC = () => {
   }, [sortedMerchandises, currentPage, itemsPerPage]);
 
   // Merchandise 클릭 시 이동 함수
-  const handleMerchandiseClick = (category: string, id: string) => { // Changed id type to string
+  const handleMerchandiseClick = (category: string, id: string) => {
     navigate(`/content/${category}/${id}`);
   };
 
   return (
     <ContentWrapper>
       <Header />
-
       <SharedContainer>
-        {/* 족보 경고 메시지 */}
-        {clickedCategory === "secret" ? (
-          <WarningMessage>족보 거래는 불법입니다!</WarningMessage>
+        <Navigation clickedCategory={clickedCategory} onCategoryChange={handleCategoryChange} />
+        <SearchToggleWrapper>
+          <SearchTab key={searchQuery} onSearch={handleSearch} />
+          <ToggleWrapper>
+            <ToggleLabel>거래 가능만 보기</ToggleLabel>
+            <Toggle isOn={showAvailableOnly} onToggle={handleToggle} />
+          </ToggleWrapper>
+        </SearchToggleWrapper>
+        {sortedMerchandises.length > 0 ? (
+          <MerchandiseList>
+            {paginatedMerchandises.map((item) => (
+              <Merchandise
+                key={item.id}
+                {...item}
+                onClick={() => handleMerchandiseClick(item.category, item.id)}
+              />
+            ))}
+          </MerchandiseList>
         ) : (
-          <>
-            <Navigation
-              clickedCategory={clickedCategory}
-              onCategoryChange={handleCategoryChange} // Updated handler
-            />
-            <SearchToggleWrapper>
-              <SearchTab key={searchQuery} onSearch={handleSearch} /> {/* Key prop to reset SearchTab */}
-              <ToggleWrapper>
-                <ToggleLabel>거래 가능만 보기</ToggleLabel>
-                <Toggle isOn={showAvailableOnly} onToggle={handleToggle} />
-              </ToggleWrapper>
-            </SearchToggleWrapper>
-          </>
+          <NoContentMessage>해당 카테고리에 상품이 없습니다.</NoContentMessage>
+        )}
+        {totalPages >= 1 && (
+          <PaginationWrapper>
+            <Pagination currentPage={currentPage} totalPages={totalPages} onPageChange={handlePageChange} />
+          </PaginationWrapper>
         )}
       </SharedContainer>
-
-      {/* Merchandise 목록 */}
-      {clickedCategory !== "secret" && (
-        <>
-          {sortedMerchandises.length > 0 ? ( // Changed from filteredMerchandises to sortedMerchandises
-            <MerchandiseList>
-              {paginatedMerchandises.map((item) => (
-                <Merchandise
-                  key={item.id}
-                  {...item}
-                  onClick={() => handleMerchandiseClick(item.category, item.id)} // Add click handler
-                />
-              ))}
-            </MerchandiseList>
-          ) : (
-            <NoContentMessage>해당 카테고리에 상품이 없습니다.</NoContentMessage>
-          )}
-        </>
-      )}
-
-      {/* Pagination */}
-      {clickedCategory !== "secret" && totalPages >= 1 && (
-        <PaginationWrapper>
-          <Pagination
-            currentPage={currentPage}
-            totalPages={totalPages}
-            onPageChange={handlePageChange}
-          />
-        </PaginationWrapper>
-      )}
-
       <Footer />
     </ContentWrapper>
   );

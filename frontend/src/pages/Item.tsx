@@ -18,8 +18,9 @@ const Item: React.FC = () => {
 
   // find the item
   const item: MerchandiseProps | undefined = merchandises.find(
-    (merchandise) => merchandise.category === category && merchandise.id === id
+    (merchandise) => merchandise.category === category && String(merchandise.id) === String(id)
   );
+  
 
   if (!item) {
     return (

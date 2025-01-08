@@ -23,6 +23,13 @@ const KakaoCallback: React.FC = () => {
         const grant_type = "authorization_code";
         const client_id = process.env.REACT_APP_RESTAPI_KAKAO_APP_KEY;
         const REDIRECT_URI = process.env.REACT_APP_KAKAO_REDIRECT_URL;
+        const backendUrl = process.env.REACT_APP_BACKEND_URL; // 내부에서 선언
+
+        if (!backendUrl) {
+            console.error("REACT_APP_BACKEND_URL 환경 변수가 설정되지 않았습니다.");
+            setIsLoading(false);
+            return;
+        }    
 
         // Validate environment variables
         if (!client_id) {
@@ -99,7 +106,7 @@ const KakaoCallback: React.FC = () => {
 
                     if (User_ID && User_NICKNAME) {
                         // Send data to backend
-                        axios.post("http://localhost:5001/api/users", {
+                        axios.post(`${backendUrl}/api/users`, {
                             User_ID,
                             User_NICKNAME,
                         })
