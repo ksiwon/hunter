@@ -1,9 +1,11 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 
 
 const KakaoCallback = () => {
+    const [userNickname, setUserNickname] = useState(null);
+    const navigate = useNavigate();
 
     useEffect(() => {
         const params = new URL(document.location.toString()).searchParams;
@@ -32,7 +34,7 @@ const KakaoCallback = () => {
                     console.log(`Bearer ${access_token}`);
                     axios
                         .post(
-                            "https:kapi.kakao.com/v2/user/me",
+                            "https://kapi.kakao.com/v2/user/me",
                             {},
                             {
                                 headers: {
@@ -59,8 +61,9 @@ const KakaoCallback = () => {
                                         User_ID,
                                         User_NICKNAME,
                                     })
-                                    .then((response) => {
-                                        console.log("데이터 저장 성공:", response.data);
+                                    .then(() => {
+                                        setUserNickname(User_NICKNAME); // 닉네임 상태 저장
+                                        navigate("/", { state: { userNickname: User_NICKNAME } }); // 홈 화면으로 이동
                                     })
                                     .catch((error) => {
                                         console.error("데이터 저장 실패:", error);

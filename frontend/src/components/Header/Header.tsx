@@ -11,7 +11,7 @@ import {
   UserName,
   LogoFrame,
 } from "./Header.styles";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 
 // 로그인 상태 관리를 위한 Context 생성
 const AuthContext = createContext<{
@@ -21,8 +21,8 @@ const AuthContext = createContext<{
   logout: () => void;
 }>({
   isLoggedIn: false,
-  login: () => {},
-  logout: () => {},
+  login: () => { },
+  logout: () => { },
 });
 
 export const useAuth = () => useContext(AuthContext);

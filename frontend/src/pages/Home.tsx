@@ -154,7 +154,7 @@ const ActionButton = styled.button<{ color: "green" | "blue" }>`
 
   &:hover {
     background-color: ${({ color, theme }) =>
-      color === "green" ? theme.colors.green[500] : theme.colors.blue[500]}; /* Slightly darker on hover */
+    color === "green" ? theme.colors.green[500] : theme.colors.blue[500]}; /* Slightly darker on hover */
   }
 `;
 
