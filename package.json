@@ -1,0 +1,14 @@
+{
+  "name": "jjolab",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "serve": "nodemon backend/index.js",
+    "start": "cd backend && yarn install && yarn nodemon",
+    "build": "cd frontend && yarn install && yarn build"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.7"
+  }
+}
