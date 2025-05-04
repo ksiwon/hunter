@@ -4,9 +4,12 @@ const express = require('express');
 const mongoose = require("mongoose");
 const cors = require("cors");
 const path = require('path');
+const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
 
 const Everytime = require('./models/everytime');
 const Hunt = require('./models/hunt');
+const User = require('./models/user');
 
 const app = express();
 const port = process.env.PORT || 8080;
@@ -29,6 +32,135 @@ app.get('/', (req, res) => {
 // 상태 확인 라우트
 app.get('/health', (req, res) => {
   res.status(200).send('OK');
+});
+
+// ===== USER 관련 API =====
+// 회원가입 API
+app.post('/api/register', async (req, res) => {
+  try {
+    const {
+      username,
+      nickname,
+      email,
+      password,
+      phoneNumber,
+      accountNumber,
+      bankName,
+      openChatLink
+    } = req.body;
+
+    // 이메일 중복 체크
+    const existingUser = await User.findOne({ email });
+    if (existingUser) {
+      return res.status(400).json({ success: false, message: '이미 등록된 이메일입니다.' });
+    }
+
+    // 닉네임 중복 체크
+    const existingNickname = await User.findOne({ nickname });
+    if (existingNickname) {
+      return res.status(400).json({ success: false, message: '이미 사용 중인 닉네임입니다.' });
+    }
+
+    // 사용자 생성
+    const user = await User.create({
+      username,
+      nickname,
+      email,
+      password, // 모델의 pre save 훅에서 해싱됨
+      phoneNumber,
+      accountNumber,
+      bankName,
+      openChatLink,
+      mannerScore: 4.3 // 기본값
+    });
+
+    // 토큰 생성
+    const token = user.getSignedToken();
+
+    res.status(201).json({
+      success: true,
+      token,
+      user: {
+        id: user._id,
+        username: user.username,
+        nickname: user.nickname,
+        email: user.email,
+        mannerScore: user.mannerScore
+      }
+    });
+  } catch (error) {
+    console.error('회원가입 오류:', error);
+    res.status(500).json({ success: false, message: '회원가입 중 오류가 발생했습니다.', error: error.message });
+  }
+});
+
+// 로그인 API
+app.post('/api/login', async (req, res) => {
+  try {
+    const { email, password } = req.body;
+
+    // 이메일, 비밀번호 필수 체크
+    if (!email || !password) {
+      return res.status(400).json({ success: false, message: '이메일과 비밀번호를 모두 입력해주세요.' });
+    }
+
+    // 사용자 조회
+    const user = await User.findOne({ email });
+    if (!user) {
+      return res.status(401).json({ success: false, message: '이메일 또는 비밀번호가 잘못되었습니다.' });
+    }
+
+    // 비밀번호 확인
+    const isMatch = await user.matchPassword(password);
+    if (!isMatch) {
+      return res.status(401).json({ success: false, message: '이메일 또는 비밀번호가 잘못되었습니다.' });
+    }
+
+    // 토큰 생성
+    const token = user.getSignedToken();
+
+    res.status(200).json({
+      success: true,
+      token,
+      user: {
+        id: user._id,
+        username: user.username,
+        nickname: user.nickname,
+        email: user.email,
+        mannerScore: user.mannerScore
+      }
+    });
+  } catch (error) {
+    console.error('로그인 오류:', error);
+    res.status(500).json({ success: false, message: '로그인 중 오류가 발생했습니다.', error: error.message });
+  }
+});
+
+// 사용자 정보 조회 API (인증 필요)
+app.get('/api/user', async (req, res) => {
+  try {
+    // 헤더에서 토큰 추출
+    const token = req.headers.authorization?.split(' ')[1];
+    if (!token) {
+      return res.status(401).json({ success: false, message: '인증이 필요합니다.' });
+    }
+
+    // 토큰 검증
+    const decoded = jwt.verify(token, process.env.JWT_SECRET || 'your-secret-key');
+    const user = await User.findById(decoded.id).select('-password');
+
+    if (!user) {
+      return res.status(404).json({ success: false, message: '사용자를 찾을 수 없습니다.' });
+    }
+
+    res.status(200).json({
+      success: true,
+      user
+    });
+  } catch (error) {
+    console.error('사용자 정보 조회 오류:', error);
+    res.status(500).json({ success: false, message: '사용자 정보 조회 중 오류가 발생했습니다.', error: error.message });
+  }
 });
 
 // ===== EVERYTIME 관련 API =====
