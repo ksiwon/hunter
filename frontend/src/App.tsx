@@ -14,6 +14,9 @@ import Footer from './components/Footer';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import Home from './pages/Home';
+import Sell from './pages/Sell';
+import Dashboard from './pages/Dashboard';
+import ProductDetailPage from './pages/ProductDetailPage';
 
 // 보호된 라우트 컴포넌트
 const ProtectedRoute: React.FC<{ element: React.ReactNode }> = ({ element }) => {
@@ -44,6 +47,10 @@ const AppWrapper = () => {
             <Route path="/" element={<Home />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
+            <Route path="/sell" element={<ProtectedRoute element={<Sell />} />} />
+            <Route path="/dashboard" element={<ProtectedRoute element={<Dashboard />} />} />
+            <Route path="/product/:id" element={<ProtectedRoute element={<ProductDetailPage />} />} />
+            <Route path="*" element={<div>미개발 페이지입니다.</div>} /> 
           </Routes>
         </main>
         <Footer />

@@ -10,14 +10,55 @@ const jwt = require('jsonwebtoken');
 const Everytime = require('./models/everytime');
 const Hunt = require('./models/hunt');
 const User = require('./models/user');
+const { v4: uuidv4 } = require('uuid');
+
+mongoose.set('strictQuery', false);
 
 const app = express();
 const port = process.env.PORT || 8080;
+
+// 1) CORS를 **가장 위**에
+app.use(cors({ origin: "*" }));
+
+// 2) 바디 파서
+app.use(express.json({ limit: '10mb' }));
+app.use(express.urlencoded({ extended: false, limit: '10mb' }));
+
+// 3) 업로드 폴더 정적 서빙
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+
+// 4) Multer + 업로드 라우트
+const multer = require('multer');
+const fs = require('fs');
+const uploadDir = path.join(__dirname, 'uploads');
+if (!fs.existsSync(uploadDir)) fs.mkdirSync(uploadDir);
+
+const upload = multer({
+  storage: multer.diskStorage({
+    destination: (req, file, cb) => cb(null, uploadDir),
+    filename:  (req, file, cb) => {
+      const ext = path.extname(file.originalname);        // ".png"
+      const name = `${Date.now()}-${uuidv4()}${ext}`;      // "168...-550e8400-e29b-41d4-a716-446655440000.png"
+      cb(null, name);
+    }
+  }),
+  limits: { fileSize: 10 * 1024 * 1024 }
+});
+
+app.post(
+  '/api/upload-images',
+  upload.array('images', 5),
+  (req, res) => {
+    const imageUrls = req.files.map(f => `/uploads/${f.filename}`);
+    res.status(200).json({ imageUrls });
+  }
+);
 
 // Middleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cors({ origin: "*" }));
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 // MongoDB 연결
 mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true })
@@ -335,6 +376,25 @@ app.get('/api/everytime/author/:author', async (req, res) => {
 
 // ===== HUNT 관련 API =====
 
+// 마지막 게시글 번호 가져오기
+app.get('/api/hunt/last-post-number', async (req, res) => {
+  try {
+    const lastPost = await Hunt
+      .findOne()
+      .sort({ postNumber: -1 })
+      .select('postNumber')
+      .lean();                // lean()을 쓰면 plain JS 객체 반환
+
+    const lastPostNumber = lastPost?.postNumber ?? 0;
+
+    return res.status(200).json({ lastPostNumber });
+  } catch (err) {
+    console.error('[last-post-number] 에러 발생:', err);
+    // 실패해도 200 + 0을 반환해서 프론트에서 계속 진행할 수 있도록
+    return res.status(200).json({ lastPostNumber: 0 });
+  }
+});
+
 // Hunt 모든 항목 가져오기
 app.get('/api/hunt', async (req, res) => {
   const { page = 1, limit = 20, status, sort = 'created_at', order = 'desc' } = req.query;
@@ -433,18 +493,22 @@ app.get('/api/hunt/search', async (req, res) => {
 
 // Hunt 항목 추가
 app.post('/api/hunt', async (req, res) => {
-  const { title, content, author, tags, imageUrl, sourceUrl, status } = req.body;
+  const { 
+    title, 
+    content, 
+    author, 
+    category, 
+    condition, 
+    price, 
+    imageUrl, 
+    postNumber, 
+    status 
+  } = req.body;
   
   try {
     // 필수 필드 검증
-    if (!title || !content || !author || !sourceUrl) {
+    if (!title || !content || !author || !category || !condition || !price) {
       return res.status(400).json({ message: 'Missing required fields' });
-    }
-    
-    // 중복 확인
-    const existingItem = await Hunt.findOne({ sourceUrl });
-    if (existingItem) {
-      return res.status(409).json({ message: 'An item with this source URL already exists' });
     }
     
     // 새 항목 생성
@@ -452,9 +516,11 @@ app.post('/api/hunt', async (req, res) => {
       title,
       content,
       author,
-      tags: tags || [],
+      category,
+      condition,
+      price,
       imageUrl: imageUrl || "",
-      sourceUrl,
+      postNumber,
       status: status || 'active',
       created_at: new Date()
     });
@@ -548,6 +614,255 @@ app.get('/api/hunt/tags/:tag', async (req, res) => {
   } catch (err) {
     console.error('Error fetching Hunt items by tag:', err.message);
     return res.status(500).json({ message: 'Error fetching Hunt items by tag' });
+  }
+});
+
+// index.js 파일에 추가할 코드
+
+// ===== EVERYTIME에서 HUNT로 데이터 마이그레이션 API =====
+
+// 마이그레이션 API - Everytime 게시글을 Hunt로 전송 (디버깅 기능 강화)
+app.post('/api/migrate/everytime-to-hunt', async (req, res) => {
+  try {
+    // 날짜, 키워드 등으로 제한 (선택 사항)
+    const { limit = 100, keyword, startDate, endDate } = req.query;
+    
+    // 쿼리 구성
+    let query = {};
+    
+    if (keyword) {
+      const regex = new RegExp(keyword, 'i');
+      query.$or = [
+        { '제목': { $regex: regex } },
+        { '내용': { $regex: regex } }
+      ];
+    }
+    
+    if (startDate && endDate) {
+      query.created_at = {
+        $gte: new Date(startDate),
+        $lte: new Date(endDate)
+      };
+    }
+    
+    // 1. 모든 Everytime 게시글 가져오기
+    const allEverytimePosts = await Everytime.find().sort({ created_at: -1 });
+    
+    // 2. 이미 마이그레이션된 URL 목록 가져오기
+    const existingUrls = await Hunt.distinct('everytimeUrl');
+    
+    // 3. 마이그레이션되지 않은 게시글 필터링
+    const postsToMigrate = allEverytimePosts.filter(post => 
+      !existingUrls.includes(post.URL)
+    );
+    
+    if (postsToMigrate.length === 0) {
+      return res.status(200).json({
+        success: true,
+        message: '모든 Everytime 게시글이 이미 마이그레이션되었습니다.',
+        stats: {
+          total: allEverytimePosts.length,
+          migrated: existingUrls.length
+        }
+      });
+    }
+    
+    // 4. 마이그레이션할 게시글 제한 (limit 적용)
+    const limitedPosts = postsToMigrate.slice(0, parseInt(limit));
+    
+    // 5. Hunt에서 마지막 게시글 번호 가져오기
+    const lastPost = await Hunt
+      .findOne()
+      .sort({ postNumber: -1 })
+      .select('postNumber')
+      .lean();
+    
+    let lastPostNumber = lastPost?.postNumber ?? 0;
+    
+    // 6. 결과 추적용 변수
+    const migrationResults = {
+      total: limitedPosts.length,
+      totalRemaining: postsToMigrate.length,
+      success: 0,
+      failed: 0,
+      failedItems: []
+    };
+    
+    // 7. 각 Everytime 게시글 처리
+    for (const post of limitedPosts) {
+      try {
+        console.log(`마이그레이션 시도 (${post._id}): ${post.제목}`);
+        
+        // 새 Hunt 항목 생성
+        const huntItem = new Hunt({
+          title: post.제목 || 'Everytime 게시글',
+          content: post.내용 || '내용 없음',
+          author: post.작성자 || '익명',
+          created_at: post.created_at || new Date(),
+          category: "unknown",
+          condition: "unknown",
+          price: 0,
+          imageUrl: post.이미지 && post.이미지 !== "이미지 없음" ? post.이미지 : "",
+          postNumber: ++lastPostNumber,
+          status: 'active',
+          // Everytime 게시글을 식별하기 위한 필드 추가
+          isFromEverytime: true,
+          everytimeUrl: post.URL,
+          everytimeId: post._id
+        });
+        
+        try {
+          await huntItem.save();
+          console.log(`마이그레이션 성공 (${post._id})`);
+          migrationResults.success++;
+        } catch (saveError) {
+          // 저장 오류 상세 기록
+          console.error(`저장 오류 (${post._id}):`, saveError);
+          
+          // mongoose 유효성 검사 오류 상세 기록
+          if (saveError.name === 'ValidationError') {
+            for (let field in saveError.errors) {
+              console.error(`필드 [${field}] 오류:`, saveError.errors[field].message);
+            }
+          }
+          
+          // 중복 키 오류 상세 기록
+          if (saveError.code === 11000) {
+            console.error(`중복 키 오류:`, saveError.keyValue);
+          }
+          
+          throw saveError; // 다시 던져서 outer catch에서 처리
+        }
+      } catch (error) {
+        console.error(`마이그레이션 실패 (${post._id}, ${post.제목}):`, error.message);
+        
+        // 모든 필드 값 출력하여 디버깅
+        console.error('실패한 문서 내용:', {
+          id: post._id,
+          title: post.제목 || '(없음)',
+          content_sample: post.내용 ? post.내용.substring(0, 50) + '...' : '(없음)',
+          author: post.작성자 || '(없음)',
+          created_at: post.created_at || '(없음)',
+          image: post.이미지 || '(없음)',
+          url: post.URL || '(없음)'
+        });
+        
+        migrationResults.failed++;
+        migrationResults.failedItems.push({
+          id: post._id,
+          title: post.제목 || '(제목 없음)',
+          reason: error.message,
+          details: error.code === 11000 
+            ? `중복 키: ${JSON.stringify(error.keyValue)}` 
+            : undefined
+        });
+      }
+    }
+    
+    // 8. 마이그레이션 상태 업데이트
+    const totalEverytime = await Everytime.countDocuments();
+    const migratedCount = await Hunt.countDocuments({ isFromEverytime: true });
+    
+    return res.status(200).json({
+      success: true,
+      message: `마이그레이션 완료: ${migrationResults.success}/${migrationResults.total} 성공`,
+      stats: {
+        totalEverytime,
+        migratedCount,
+        remaining: totalEverytime - migratedCount,
+        percentComplete: (migratedCount / totalEverytime * 100).toFixed(2) + '%'
+      },
+      results: migrationResults
+    });
+  } catch (err) {
+    console.error('마이그레이션 오류:', err);
+    return res.status(500).json({ 
+      success: false, 
+      message: '마이그레이션 중 오류가 발생했습니다.', 
+      error: err.message,
+      stack: process.env.NODE_ENV === 'development' ? err.stack : undefined
+    });
+  }
+});
+
+// 마이그레이션 상태 확인
+app.get('/api/migration/status', async (req, res) => {
+  try {
+    // 전체 Everytime 게시글 수 계산
+    const totalEverytime = await Everytime.countDocuments();
+    
+    // Everytime에서 가져온 Hunt 게시글 수 계산
+    const migratedCount = await Hunt.countDocuments({ isFromEverytime: true });
+    
+    // 마이그레이션되지 않은 게시글 샘플 가져오기 (최대 5개)
+    const migratedUrls = await Hunt.distinct('everytimeUrl');
+    const nonMigratedSamples = await Everytime.find({ 
+      URL: { $nin: migratedUrls } 
+    })
+    .select('_id 제목 작성자 URL created_at')
+    .limit(5);
+    
+    return res.status(200).json({
+      success: true,
+      totalEverytime,
+      migratedCount,
+      remaining: totalEverytime - migratedCount,
+      percentComplete: (migratedCount / totalEverytime * 100).toFixed(2) + '%',
+      remainingSamples: nonMigratedSamples.map(post => ({
+        id: post._id,
+        title: post.제목,
+        author: post.작성자,
+        url: post.URL,
+        created_at: post.created_at
+      }))
+    });
+  } catch (err) {
+    console.error('마이그레이션 상태 조회 오류:', err.message);
+    return res.status(500).json({ 
+      success: false, 
+      message: '마이그레이션 상태 조회 중 오류가 발생했습니다.', 
+      error: err.message 
+    });
+  }
+});
+
+// 사용자 연락처 정보 가져오기 API
+app.get('/api/user/contact', async (req, res) => {
+  try {
+    const { authorName } = req.query;
+    
+    if (!authorName) {
+      return res.status(400).json({ 
+        success: false, 
+        message: '작성자 이름이 필요합니다.' 
+      });
+    }
+    
+    // 사용자 찾기 (username 또는 nickname으로)
+    const user = await User.findOne({
+      $or: [
+        { username: authorName },
+        { nickname: authorName }
+      ]
+    }).select('openChatLink');
+    
+    if (!user) {
+      return res.status(404).json({ 
+        success: false, 
+        message: '해당 사용자를 찾을 수 없습니다.' 
+      });
+    }
+    
+    return res.status(200).json({
+      success: true,
+      openChatLink: user.openChatLink
+    });
+  } catch (error) {
+    console.error('사용자 연락처 조회 오류:', error.message);
+    return res.status(500).json({ 
+      success: false, 
+      message: '사용자 정보 조회 중 오류가 발생했습니다.' 
+    });
   }
 });
 

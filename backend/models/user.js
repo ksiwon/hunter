@@ -54,7 +54,10 @@ const userSchema = new mongoose.Schema({
     type: Date,
     default: Date.now
   }
-}, { timestamps: true });
+}, { 
+  timestamps: false, // timestamps 옵션 비활성화
+  versionKey: false  // __v 필드 비활성화
+});
 
 // 비밀번호 해싱
 userSchema.pre('save', async function(next) {
