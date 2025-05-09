@@ -73,7 +73,53 @@ const huntSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     sparse: true,
     unique: true
-  }
+  },
+  aiAnalysisData: {
+    confidence: {
+      type: Number,
+      default: 0
+    },
+    similarProducts: [{
+      id: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Hunt'
+      },
+      title: String,
+      price: Number,
+      condition: String
+    }],
+    priceHistory: [{
+      price: Number,
+      condition: String,
+      source: String,  // '외부 상점', '학생 거래', '네이버 쇼핑' 등
+      url: String,     // 외부 링크
+      title: String,   // 상품명 (네이버 쇼핑에서 가져온 정보)
+      huntItemId: {    // 내부 상품 ID (있을 경우)
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Hunt',
+        sparse: true
+      },
+      date: {
+        type: Date,
+        default: Date.now
+      }
+    }],
+    webPriceInfo: [{
+      price: Number,
+      condition: String,
+      source: String,  // seller를 source로 통일
+      url: String,
+      title: String,
+      date: {
+        type: Date,
+        default: Date.now
+      },
+      confidence: Number
+    }],
+    lastAnalyzedAt: {
+      type: Date
+    }
+  },
 }, { 
   timestamps: false, // timestamps 옵션 비활성화
   versionKey: false  // __v 필드 비활성화

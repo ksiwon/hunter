@@ -14,7 +14,10 @@ import {
   FaCreditCard,
   FaComment,
   FaStar,
-  FaExclamationTriangle
+  FaExclamationTriangle,
+  FaGraduationCap,
+  FaVenusMars,
+  FaTags
 } from 'react-icons/fa';
 
 const Register: React.FC = () => {
@@ -31,8 +34,16 @@ const Register: React.FC = () => {
     phoneNumber: '',
     bankName: '은행명',
     accountNumber: '',
-    openChatLink: ''
+    openChatLink: '',
+    // 새로 추가된 필드들
+    major: '',
+    grade: 1,
+    gender: 'not_specified',
+    interests: [] as string[]
   });
+  
+  // 관심사 입력을 위한 상태
+  const [interestInput, setInterestInput] = useState('');
 
   const [formErrors, setFormErrors] = useState<Record<string, string>>({});
   const [emailVerified, setEmailVerified] = useState(false);
@@ -101,6 +112,11 @@ const Register: React.FC = () => {
       errors.openChatLink = '오픈채팅 링크를 입력해주세요.';
     }
     
+    // 새로 추가된 필드들에 대한 유효성 검사
+    if (!formData.major.trim()) {
+      errors.major = '전공을 입력해주세요.';
+    }
+    
     setFormErrors(errors);
     return Object.keys(errors).length === 0;
   };
@@ -121,6 +137,25 @@ const Register: React.FC = () => {
   const handlePhoneVerify = () => {
     // 실제로는 전화번호 인증 로직 구현
     setPhoneVerified(true);
+  };
+  
+  // 관심사 추가 함수
+  const handleAddInterest = () => {
+    if (interestInput.trim() && !formData.interests.includes(interestInput.trim())) {
+      setFormData({
+        ...formData,
+        interests: [...formData.interests, interestInput.trim()]
+      });
+      setInterestInput('');
+    }
+  };
+  
+  // 관심사 제거 함수
+  const handleRemoveInterest = (interest: string) => {
+    setFormData({
+      ...formData,
+      interests: formData.interests.filter(item => item !== interest)
+    });
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -272,6 +307,100 @@ const Register: React.FC = () => {
             />
           </InputWrapper>
           {formErrors.passwordConfirm && <ErrorText>{formErrors.passwordConfirm}</ErrorText>}
+        </FormGroup>
+        
+        {/* 새로 추가된 전공 필드 */}
+        <FormGroup>
+          <Label>전공</Label>
+          <InputWrapper error={!!formErrors.major}>
+            <IconWrapper>
+              <FaGraduationCap color="#A332FF" />
+            </IconWrapper>
+            <Input
+              type="text"
+              name="major"
+              value={formData.major}
+              onChange={handleChange}
+              placeholder="전공을 입력해주세요."
+            />
+          </InputWrapper>
+          {formErrors.major && <ErrorText>{formErrors.major}</ErrorText>}
+        </FormGroup>
+        
+        {/* 학년 선택 필드 */}
+        <FormGroup>
+          <Label>학년</Label>
+          <InputWrapper>
+            <IconWrapper>
+              <FaGraduationCap color="#A332FF" />
+            </IconWrapper>
+            <SelectInput
+              name="grade"
+              value={formData.grade}
+              onChange={handleChange}
+            >
+              <option value={1}>1학년</option>
+              <option value={2}>2학년</option>
+              <option value={3}>3학년</option>
+              <option value={4}>4학년</option>
+              <option value={5}>대학원 1년차</option>
+              <option value={6}>대학원 2년차 이상</option>
+            </SelectInput>
+          </InputWrapper>
+        </FormGroup>
+        
+        {/* 성별 선택 필드 */}
+        <FormGroup>
+          <Label>성별</Label>
+          <InputWrapper>
+            <IconWrapper>
+              <FaVenusMars color="#A332FF" />
+            </IconWrapper>
+            <SelectInput
+              name="gender"
+              value={formData.gender}
+              onChange={handleChange}
+            >
+              <option value="not_specified">선택 안함</option>
+              <option value="male">남성</option>
+              <option value="female">여성</option>
+              <option value="other">기타</option>
+            </SelectInput>
+          </InputWrapper>
+        </FormGroup>
+        
+        {/* 관심사 입력 필드 */}
+        <FormGroup>
+          <Label>관심사</Label>
+          <InterestsContainer>
+            <InterestInputContainer>
+              <IconWrapper>
+                <FaTags color="#A332FF" />
+              </IconWrapper>
+              <Input
+                type="text"
+                value={interestInput}
+                onChange={(e) => setInterestInput(e.target.value)}
+                placeholder="관심사를 입력해주세요 (예: 전자기기, 스포츠, 음악)"
+                onKeyPress={(e) => {
+                  if (e.key === 'Enter') {
+                    e.preventDefault();
+                    handleAddInterest();
+                  }
+                }}
+              />
+              <AddButton type="button" onClick={handleAddInterest}>추가</AddButton>
+            </InterestInputContainer>
+            
+            <InterestTags>
+              {formData.interests.map((interest, index) => (
+                <InterestTag key={index}>
+                  {interest}
+                  <RemoveTagButton onClick={() => handleRemoveInterest(interest)}>×</RemoveTagButton>
+                </InterestTag>
+              ))}
+            </InterestTags>
+          </InterestsContainer>
         </FormGroup>
         
         <FormGroup>
@@ -617,6 +746,91 @@ const ErrorText = styled.div`
   font-weight: ${({ theme }) => theme.typography.T7.fontWeight};
   font-family: ${({ theme }) => theme.typography.T7.fontFamily};
   margin-top: 4px;
+`;
+
+const SelectInput = styled.select`
+  flex: 1;
+  padding: 12px 16px;
+  border: none;
+  font-size: ${({ theme }) => theme.typography.T5.fontSize};
+  font-weight: ${({ theme }) => theme.typography.T5.fontWeight};
+  font-family: ${({ theme }) => theme.typography.T5.fontFamily};
+  
+  &:focus {
+    outline: none;
+  }
+`;
+
+const InterestsContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  gap: 8px;
+`;
+
+const InterestInputContainer = styled.div`
+  display: flex;
+  align-items: center;
+  border: 1px solid ${({ theme }) => theme.colors.gray[200]};
+  border-radius: 0 4px 4px 0;
+  
+  &:focus-within {
+    border-color: ${({ theme }) => theme.colors.primary};
+  }
+`;
+
+const AddButton = styled.button`
+  padding: 12px 16px;
+  background-color: ${({ theme }) => theme.colors.primary};
+  color: ${({ theme }) => theme.colors.white};
+  border: none;
+  border-radius: 0 4px 4px 0;
+  font-size: ${({ theme }) => theme.typography.T5.fontSize};
+  font-weight: ${({ theme }) => theme.typography.T5.fontWeight};
+  font-family: ${({ theme }) => theme.typography.T5.fontFamily};
+  cursor: pointer;
+  
+  &:hover {
+    background-color: #8A29D7;
+  }
+`;
+
+const InterestTags = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding-left: 4px;
+`;
+
+const InterestTag = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 8px;
+  background-color: ${({ theme }) => theme.colors.purple[100]};
+  color: ${({ theme }) => theme.colors.primary};
+  border-radius: 16px;
+  font-size: ${({ theme }) => theme.typography.T6.fontSize};
+  font-weight: ${({ theme }) => theme.typography.T6.fontWeight};
+  font-family: ${({ theme }) => theme.typography.T6.fontFamily};
+`;
+
+const RemoveTagButton = styled.button`
+  background: none;
+  border: none;
+  font-size: 14px;
+  color: ${({ theme }) => theme.colors.primary};
+  cursor: pointer;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+  
+  &:hover {
+    color: ${({ theme }) => theme.colors.red[600]};
+  }
 `;
 
 export default Register;
