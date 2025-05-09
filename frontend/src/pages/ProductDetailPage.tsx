@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 import axios from 'axios';
 
 // 아이콘 임포트
@@ -12,10 +12,45 @@ import {
   FaMapMarkerAlt,
   FaChevronLeft,
   FaChevronRight,
-  FaShare
+  FaShare,
+  FaSync,
+  FaExternalLinkAlt
 } from 'react-icons/fa';
 
 // 타입 정의
+interface SimilarProduct {
+  id: string;
+  title: string;
+  price: number;
+  condition: string;
+}
+
+interface PriceHistoryItem {
+  price: number;
+  condition: string;
+  source?: string;
+  url?: string;
+  huntItemId?: string;
+  date: string;
+}
+
+interface WebPriceInfo {
+  price: number;
+  condition: string;
+  source: string;   // seller를 source로 통일
+  url: string;
+  title: string;   // 상품명
+  confidence: number;
+}
+
+interface AIAnalysisData {
+  confidence?: number;
+  similarProducts?: SimilarProduct[];
+  priceHistory?: PriceHistoryItem[];
+  webPriceInfo?: WebPriceInfo[];
+  lastAnalyzedAt?: string;
+}
+
 interface ProductDetail {
   _id: string;
   title: string;
@@ -32,6 +67,7 @@ interface ProductDetail {
   everytimeUrl?: string;    // 추가: 에브리타임 URL
   views?: number;
   likes?: number;
+  aiAnalysisData?: AIAnalysisData;
 }
 
 // API URL
@@ -49,6 +85,9 @@ const ProductDetailPage: React.FC = () => {
   
   // 이미지 URL 목록 (실제로는 서버에서 가져와야 함)
   const [images, setImages] = useState<string[]>([]);
+  
+  // 상품 정보 재분석 상태
+  const [isAnalyzing, setIsAnalyzing] = useState<boolean>(false);
   
   useEffect(() => {
     const fetchProductDetail = async () => {
@@ -207,6 +246,39 @@ const ProductDetailPage: React.FC = () => {
       });
   };
 
+  // 상품 정보 다시 분석 요청
+  const handleReanalyze = async () => {
+    if (isAnalyzing || !product) return;
+    
+    setIsAnalyzing(true);
+    try {
+      const response = await axios.post(`${API_URL}/hunt/${id}/reanalyze`);
+      if (response.data.success) {
+        alert('상품 정보가 다시 분석되었습니다.');
+        // 상품 정보 업데이트
+        setProduct(response.data.product);
+      } else {
+        alert('분석 중 오류가 발생했습니다.');
+      }
+    } catch (error) {
+      console.error('재분석 오류:', error);
+      alert('분석 요청 중 오류가 발생했습니다.');
+    } finally {
+      setIsAnalyzing(false);
+    }
+  };
+  
+  // 외부 가격 정보 링크 클릭 처리
+  const handleExternalLinkClick = (url: string) => {
+    window.open(url, '_blank');
+  };
+  
+  // 내부 상품 링크 클릭 처리
+  const handleProductLinkClick = (huntItemId: string) => {
+    if (huntItemId === id) return; // 현재 상품은 이동하지 않음
+    navigate(`/product/${huntItemId}`);
+  };
+
   if (isLoading) {
     return <LoadingContainer>상품 정보를 불러오는 중입니다...</LoadingContainer>;
   }
@@ -329,6 +401,137 @@ const ProductDetailPage: React.FC = () => {
         </SellerInfo>
       </SellerSection>
       
+      {/* 가격 이력 섹션 */}
+      <PriceHistorySection>
+        <SectionHeader>
+          <SectionTitle>가격 정보</SectionTitle>
+            <AnalyzeButton onClick={handleReanalyze} disabled={isAnalyzing}>
+              {isAnalyzing ? '분석 중...' : 'AI로 가격 분석'}
+              {isAnalyzing && (
+                <RotatingIcon>
+                  <FaSync size={14} />
+                </RotatingIcon>
+              )}
+            </AnalyzeButton>
+        </SectionHeader>
+        
+        {/* 가격 이력 없는 경우 */}
+        {(!product.aiAnalysisData || 
+          (!(product.aiAnalysisData.priceHistory?.length ?? 0) && 
+          !(product.aiAnalysisData.webPriceInfo?.length ?? 0) && 
+          !(product.aiAnalysisData.similarProducts?.length ?? 0))) ? (
+          <EmptyPriceHistory>
+            {product.isFromEverytime ? 
+              '가격 정보가 없습니다. AI 분석을 통해 가격 정보를 찾아보세요.' : 
+              '가격 정보가 없습니다.'}
+          </EmptyPriceHistory>
+        ) : (
+          <PriceInfoContainer>
+            {/* 내부 거래 가격 이력 */}
+            {(product.aiAnalysisData?.priceHistory?.filter(history => history.source === '학생 거래')?.length ?? 0) > 0 && (
+              <PriceInfoSection>
+                <PriceInfoTitle>교내 거래 가격</PriceInfoTitle>
+                <PriceItemList>
+                  {product.aiAnalysisData?.priceHistory
+                    ?.filter(history => history.source === '학생 거래')
+                    ?.map((history, index) => (
+                      <PriceItem 
+                        key={`history-${index}`} 
+                        onClick={() => history.huntItemId && handleProductLinkClick(history.huntItemId)}
+                        clickable={!!history.huntItemId}
+                      >
+                        <PriceItemMain>
+                          <PriceValue>{history.price.toLocaleString()}원</PriceValue>
+                          <ConditionTag condition={history.condition}>
+                            {getConditionText(history.condition)}
+                          </ConditionTag>
+                        </PriceItemMain>
+                        <PriceItemDetails>
+                          <PriceSource>{history.source}</PriceSource>
+                          <PriceDate>
+                            {new Date(history.date).toLocaleDateString()}
+                          </PriceDate>
+                          {history.huntItemId && (
+                            <LinkIcon>
+                              <FaExternalLinkAlt size={12} />
+                            </LinkIcon>
+                          )}
+                        </PriceItemDetails>
+                      </PriceItem>
+                    ))
+                  }
+                </PriceItemList>
+              </PriceInfoSection>
+            )}
+            
+            {/* 외부 웹사이트 가격 정보 */}
+            {(product.aiAnalysisData?.webPriceInfo?.length ?? 0) > 0 && (
+              <PriceInfoSection>
+                <PriceInfoTitle>온라인 가격</PriceInfoTitle>
+                <PriceItemList>
+                  {product.aiAnalysisData?.webPriceInfo?.map((info, index) => (
+                    <PriceItem 
+                      key={`web-${index}`} 
+                      onClick={() => info.url && handleExternalLinkClick(info.url)}
+                      clickable={!!info.url}
+                    >
+                      <PriceItemMain>
+                        <PriceValue>{info.price.toLocaleString()}원</PriceValue>
+                        <ConditionTag condition={info.condition || 'best'}>
+                          {getConditionText(info.condition || 'best')}
+                        </ConditionTag>
+                      </PriceItemMain>
+                      <PriceItemDetails>
+                        <PriceTitle>{info.title || '제목 없음'}</PriceTitle>
+                        <LinkIcon>
+                          <FaExternalLinkAlt size={12} />
+                        </LinkIcon>
+                      </PriceItemDetails>
+                    </PriceItem>
+                  ))}
+                </PriceItemList>
+              </PriceInfoSection>
+            )}
+            
+            {/* 유사 상품 정보 */}
+            {(product.aiAnalysisData?.similarProducts?.length ?? 0) > 0 && (
+              <PriceInfoSection>
+                <PriceInfoTitle>유사 상품</PriceInfoTitle>
+                <PriceItemList>
+                  {product.aiAnalysisData?.similarProducts?.map((similar, index) => (
+                    <PriceItem 
+                      key={`similar-${index}`} 
+                      onClick={() => handleProductLinkClick(similar.id)}
+                      clickable={true}
+                    >
+                      <PriceItemMain>
+                        <PriceValue>{similar.price.toLocaleString()}원</PriceValue>
+                        <ConditionTag condition={similar.condition || 'unknown'}>
+                          {getConditionText(similar.condition || 'unknown')}
+                        </ConditionTag>
+                      </PriceItemMain>
+                      <PriceItemDetails>
+                        <ProductTitleText>{similar.title}</ProductTitleText>
+                        <LinkIcon>
+                          <FaExternalLinkAlt size={12} />
+                        </LinkIcon>
+                      </PriceItemDetails>
+                    </PriceItem>
+                  ))}
+                </PriceItemList>
+              </PriceInfoSection>
+            )}
+            
+            {/* 마지막 분석 시간 표시 */}
+            {product.aiAnalysisData?.lastAnalyzedAt && (
+              <AnalysisInfo>
+                마지막 AI 분석: {new Date(product.aiAnalysisData.lastAnalyzedAt).toLocaleDateString()}
+              </AnalysisInfo>
+            )}
+          </PriceInfoContainer>
+        )}
+      </PriceHistorySection>
+      
       {/* 상품 설명 */}
       <DescriptionSection>
         <SectionTitle>상품 설명</SectionTitle>
@@ -384,6 +587,16 @@ const ProductDetailPage: React.FC = () => {
     </DetailContainer>
   );
 };
+
+// 아이콘 회전 애니메이션
+const rotate = keyframes`
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+`;
 
 // 스타일 컴포넌트
 const DetailContainer = styled.div`
@@ -585,7 +798,7 @@ const ConditionBadge = styled.span<{ condition: string }>`
   font-weight: ${({ theme }) => theme.typography.T6.fontWeight};
   font-family: ${({ theme }) => theme.typography.T6.fontFamily};
   background-color: ${({ condition, theme }) => {
-    if (condition === 'best') return theme.colors.green[300];
+    if (condition === 'best') return theme.colors.green[600];
     if (condition === 'good') return theme.colors.blue[600];
     if (condition === 'soso') return theme.colors.purple[300];
     if (condition === 'bad') return theme.colors.red[300];
@@ -844,6 +1057,169 @@ const ErrorContainer = styled.div`
   font-size: ${({ theme }) => theme.typography.T4.fontSize};
   font-weight: ${({ theme }) => theme.typography.T4.fontWeight};
   font-family: ${({ theme }) => theme.typography.T4.fontFamily};
+`;
+
+// 가격 이력 관련 스타일 컴포넌트
+const PriceHistorySection = styled.section`
+  padding: 20px;
+  border-bottom: 1px solid ${({ theme }) => theme.colors.gray[200]};
+`;
+
+const SectionHeader = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+`;
+
+const AnalyzeButton = styled.button`
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background-color: ${({ theme }) => theme.colors.primary};
+  color: ${({ theme }) => theme.colors.white};
+  border: none;
+  border-radius: 4px;
+  padding: 8px 12px;
+  font-size: ${({ theme }) => theme.typography.T6.fontSize};
+  cursor: pointer;
+  transition: all 0.2s;
+  
+  &:hover:not(:disabled) {
+    background-color: ${({ theme }) => theme.colors.purple[300]};
+  }
+  
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+`;
+
+const RotatingIcon = styled.span`
+  display: inline-block;
+  animation: ${rotate} 1.5s linear infinite;
+`;
+
+const EmptyPriceHistory = styled.p`
+  text-align: center;
+  color: ${({ theme }) => theme.colors.gray[600]};
+  font-size: ${({ theme }) => theme.typography.T5.fontSize};
+  padding: 20px 0;
+`;
+
+const PriceInfoContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+`;
+
+const PriceInfoSection = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+`;
+
+const PriceInfoTitle = styled.h3`
+  font-size: ${({ theme }) => theme.typography.T5.fontSize};
+  font-weight: ${({ theme }) => theme.typography.T5.fontWeight};
+  font-family: ${({ theme }) => theme.typography.T5.fontFamily};
+  color: ${({ theme }) => theme.colors.primary};
+`;
+
+const PriceItemList = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+`;
+
+const PriceItem = styled.div<{ clickable: boolean }>`
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 12px;
+  background-color: ${({ theme }) => theme.colors.gray[100]};
+  border-radius: 8px;
+  cursor: ${({ clickable }) => clickable ? 'pointer' : 'default'};
+  transition: all 0.2s;
+  
+  &:hover {
+    background-color: ${({ clickable, theme }) => 
+      clickable ? theme.colors.purple[100] : theme.colors.gray[100]};
+  }
+`;
+
+const PriceItemMain = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`;
+
+const PriceValue = styled.span`
+  font-size: ${({ theme }) => theme.typography.T4.fontSize};
+  font-weight: ${({ theme }) => theme.typography.T4.fontWeight};
+  font-family: ${({ theme }) => theme.typography.T4.fontFamily};
+  color: ${({ theme }) => theme.colors.black};
+`;
+
+const ConditionTag = styled.span<{ condition: string }>`
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: ${({ theme }) => theme.typography.T7.fontSize};
+  font-weight: ${({ theme }) => theme.typography.T7.fontWeight};
+  font-family: ${({ theme }) => theme.typography.T7.fontFamily};
+  background-color: ${({ condition, theme }) => {
+    if (condition === 'best') return theme.colors.green[600];
+    if (condition === 'good') return theme.colors.blue[600];
+    if (condition === 'soso') return theme.colors.purple[300];
+    if (condition === 'bad') return theme.colors.red[300];
+    if (condition === 'worst') return theme.colors.red[600];
+    return theme.colors.gray[300];
+  }};
+  color: ${({ theme }) => theme.colors.white};
+`;
+
+const PriceItemDetails = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: ${({ theme }) => theme.typography.T6.fontSize};
+  color: ${({ theme }) => theme.colors.gray[600]};
+`;
+
+const PriceSource = styled.span`
+  flex: 1;
+`;
+
+const PriceDate = styled.span`
+  color: ${({ theme }) => theme.colors.gray[600]};
+`;
+
+const LinkIcon = styled.span`
+  color: ${({ theme }) => theme.colors.primary};
+`;
+
+const ProductTitleText = styled.span`
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+`;
+
+const AnalysisInfo = styled.p`
+  font-size: ${({ theme }) => theme.typography.T7.fontSize};
+  color: ${({ theme }) => theme.colors.gray[600]};
+  text-align: right;
+  margin-top: 8px;
+`;
+
+const PriceTitle = styled.span`
+  flex: 1;
+  max-width: 200px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: ${({ theme }) => theme.typography.T6.fontSize};
+  color: ${({ theme }) => theme.colors.gray[600]};
 `;
 
 export default ProductDetailPage;

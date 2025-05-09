@@ -35,21 +35,10 @@ interface HuntItem {
   likes?: number;
 }
 
-interface EverytimePost {
-  _id: string;
-  제목: string;
-  내용: string;
-  작성자: string;
-  created_at: string;
-  이미지: string;
-  URL: string;
-}
-
 const Home: React.FC = () => {
   const { isLoggedIn } = useAppSelector(state => state.auth);
   const [featuredProducts, setFeaturedProducts] = useState<HuntItem[]>([]);
   const [recentProducts, setRecentProducts] = useState<HuntItem[]>([]);
-  const [everytimePosts, setEverytimePosts] = useState<EverytimePost[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(true);
 
   // API URL 설정
@@ -103,7 +92,6 @@ const Home: React.FC = () => {
         
         setFeaturedProducts(featuredResponse.data.items || []);
         setRecentProducts(recentResponse.data.items || []);
-        setEverytimePosts(everytimeResponse.data.posts || []);
       } catch (error) {
         console.error("데이터를 불러오는 중 오류가 발생했습니다:", error);
       } finally {
@@ -139,16 +127,6 @@ const Home: React.FC = () => {
     };
     
     return conditionMap[condition] || '알 수 없음';
-  };
-
-  // 날짜 포맷팅 함수
-  const formatDate = (dateString: string) => {
-    const date = new Date(dateString);
-    return date.toLocaleDateString('ko-KR', {
-      year: 'numeric',
-      month: 'long',
-      day: 'numeric'
-    });
   };
 
   // 이미지 URL 확인
@@ -267,35 +245,6 @@ const Home: React.FC = () => {
               </ProductCard>
             ))}
           </ProductGrid>
-        )}
-      </SectionContainer>
-
-      {/* 에브리타임 게시글 섹션 */}
-      <SectionContainer>
-        <SectionHeader>
-          <SectionTitle>에브리타임 최신글</SectionTitle>
-          <ViewAllLink to="/everytime">전체보기</ViewAllLink>
-        </SectionHeader>
-        
-        {isLoading ? (
-          <LoadingMessage>게시글을 불러오는 중입니다...</LoadingMessage>
-        ) : everytimePosts.length === 0 ? (
-          <EmptyMessage>등록된 게시글이 없습니다.</EmptyMessage>
-        ) : (
-          <EverytimeGrid>
-            {everytimePosts.map(post => (
-              <EverytimeCard key={post._id} to={`/everytime/${post._id}`}>
-                <EverytimeHeader>
-                  <EverytimeTitle>{post.제목}</EverytimeTitle>
-                </EverytimeHeader>
-                <EverytimeContent>{post.내용.length > 100 ? `${post.내용.substring(0, 100)}...` : post.내용}</EverytimeContent>
-                <EverytimeMeta>
-                  <EverytimeAuthor>{post.작성자}</EverytimeAuthor>
-                  <EverytimeDate>{formatDate(post.created_at)}</EverytimeDate>
-                </EverytimeMeta>
-              </EverytimeCard>
-            ))}
-          </EverytimeGrid>
         )}
       </SectionContainer>
 
@@ -729,82 +678,6 @@ const EmptyMessage = styled.p`
   color: ${({ theme }) => theme.colors.gray[600]};
   text-align: center;
   padding: 40px 0;
-`;
-
-// 에브리타임 관련 스타일 컴포넌트
-const EverytimeGrid = styled.div`
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 24px;
-  
-  @media (max-width: 768px) {
-    grid-template-columns: 1fr;
-  }
-`;
-
-const EverytimeCard = styled(Link)`
-  background-color: ${({ theme }) => theme.colors.white};
-  border-radius: 8px;
-  overflow: hidden;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
-  padding: 20px;
-  transition: all 0.2s;
-  text-decoration: none;
-  color: ${({ theme }) => theme.colors.black};
-  display: flex;
-  flex-direction: column;
-  height: 200px;
-  
-  &:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
-  }
-`;
-
-const EverytimeHeader = styled.div`
-  margin-bottom: 12px;
-`;
-
-const EverytimeTitle = styled.h3`
-  font-size: ${({ theme }) => theme.typography.T4.fontSize};
-  font-weight: ${({ theme }) => theme.typography.T4.fontWeight};
-  font-family: ${({ theme }) => theme.typography.T4.fontFamily};
-  margin-bottom: 8px;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-`;
-
-const EverytimeContent = styled.p`
-  font-size: ${({ theme }) => theme.typography.T5.fontSize};
-  font-weight: ${({ theme }) => theme.typography.T5.fontWeight};
-  font-family: ${({ theme }) => theme.typography.T5.fontFamily};
-  color: ${({ theme }) => theme.colors.gray[600]};
-  flex: 1;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  display: -webkit-box;
-  -webkit-line-clamp: 3;
-  -webkit-box-orient: vertical;
-`;
-
-const EverytimeMeta = styled.div`
-  display: flex;
-  justify-content: space-between;
-  margin-top: 12px;
-  color: ${({ theme }) => theme.colors.gray[600]};
-`;
-
-const EverytimeAuthor = styled.span`
-  font-size: ${({ theme }) => theme.typography.T6.fontSize};
-  font-weight: ${({ theme }) => theme.typography.T6.fontWeight};
-  font-family: ${({ theme }) => theme.typography.T6.fontFamily};
-`;
-
-const EverytimeDate = styled.span`
-  font-size: ${({ theme }) => theme.typography.T6.fontSize};
-  font-weight: ${({ theme }) => theme.typography.T6.fontWeight};
-  font-family: ${({ theme }) => theme.typography.T6.fontFamily};
 `;
 
 const InfoSection = styled.section`

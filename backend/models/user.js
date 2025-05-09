@@ -50,6 +50,27 @@ const userSchema = new mongoose.Schema({
     required: [true, '오픈채팅 링크를 입력해주세요'],
     trim: true
   },
+  // 새로 추가되는 필드들
+  major: {
+    type: String,
+    trim: true,
+    default: ''
+  },
+  grade: {
+    type: Number,
+    min: 1,
+    max: 6,  // 학부 1~4학년, 대학원 5~6학년 포함
+    default: 1
+  },
+  gender: {
+    type: String,
+    enum: ['male', 'female', 'other', 'not_specified'],
+    default: 'not_specified'
+  },
+  interests: {
+    type: [String],
+    default: []
+  },
   createdAt: {
     type: Date,
     default: Date.now

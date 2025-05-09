@@ -18,10 +18,35 @@ import {
   FaEllipsisH,
   FaImage,
   FaChevronLeft,
-  FaChevronRight
+  FaChevronRight,
+  FaSync,
+  FaExternalLinkAlt
 } from 'react-icons/fa';
 
 // 타입 정의
+interface SimilarProduct {
+  id: string;
+  title: string;
+  price: number;
+}
+
+interface PriceHistoryItem {
+  price: number;
+  condition: string;
+  source?: string;
+  url?: string;
+  huntItemId?: string;
+  date: string;
+}
+
+interface WebPriceInfo {
+  price: number;
+  condition: string;
+  seller: string;
+  url: string;
+  confidence: number;
+}
+
 interface HuntItem {
   _id: string;
   title: string;
@@ -37,6 +62,17 @@ interface HuntItem {
   isFromEverytime?: boolean;
   views?: number;
   likes?: number;
+  aiAnalysisData?: {  // 옵셔널로 선언
+    confidence?: number;  // 옵셔널로 선언
+    similarProducts?: SimilarProduct[];
+    priceHistory?: PriceHistoryItem[];
+    webPriceInfo?: WebPriceInfo[];
+    lastAnalyzedAt?: string;
+  };
+}
+
+interface PriceHistoryContainerProps {
+  product: HuntItem;
 }
 
 interface ToggleProps {
@@ -48,6 +84,10 @@ interface PaginationInfo {
   currentPage: number;
   totalPages: number;
   totalItems: number;
+}
+
+interface PriceHistoryContainerProps {
+  product: HuntItem;
 }
 
 const Toggle: React.FC<ToggleProps> = ({ isOn, onChange }) => {
@@ -105,6 +145,167 @@ const Dashboard: React.FC = () => {
       <span>이미지 없음</span>
     </NoImage>
   );
+
+  // 가격 이력 및 유사 상품 컴포넌트
+  const PriceHistoryContainer: React.FC<PriceHistoryContainerProps> = ({ product }) => {
+    const [isAnalyzing, setIsAnalyzing] = useState(false);
+    const navigate = useNavigate();
+    
+    // 상품 정보 다시 분석 요청
+    const handleReanalyze = async () => {
+      if (isAnalyzing) return;
+      
+      setIsAnalyzing(true);
+      try {
+        const response = await axios.post(`${API_URL}/hunt/${product._id}/reanalyze`);
+        if (response.data.success) {
+          alert('상품 정보가 다시 분석되었습니다.');
+          window.location.reload(); // 페이지 새로고침
+        } else {
+          alert('분석 중 오류가 발생했습니다.');
+        }
+      } catch (error) {
+        console.error('재분석 오류:', error);
+        alert('분석 요청 중 오류가 발생했습니다.');
+      } finally {
+        setIsAnalyzing(false);
+      }
+    };
+    
+    // 상품 링크로 이동
+    const handleProductLinkClick = (event: React.MouseEvent, url?: string, huntItemId?: string) => {
+      event.preventDefault();
+      event.stopPropagation();
+      
+      if (huntItemId) {
+        navigate(`/product/${huntItemId}`);
+      } else if (url) {
+        window.open(url, '_blank');
+      }
+    };
+    
+    // 가격 이력 확인 - 옵셔널 체이닝 사용
+    const hasPriceHistory = product.aiAnalysisData?.priceHistory && 
+                           product.aiAnalysisData.priceHistory.length > 0;
+                           
+    // 웹 가격 정보 확인 - 옵셔널 체이닝 사용
+    const hasWebPriceInfo = product.aiAnalysisData?.webPriceInfo && 
+                           product.aiAnalysisData.webPriceInfo.length > 0;
+                           
+    // 유사 상품 정보 확인 - 옵셔널 체이닝 사용
+    const hasSimilarProducts = product.aiAnalysisData?.similarProducts && 
+                              product.aiAnalysisData.similarProducts.length > 0;
+  
+    // AI 분석 신뢰도 확인 - 옵셔널 체이닝 사용
+    const hasHighConfidence = product.aiAnalysisData?.confidence !== undefined && 
+                             product.aiAnalysisData.confidence > 0.7;
+  
+    // 가격 이력이 없고 분석 정보도 없는 경우
+    if (!hasPriceHistory && !hasWebPriceInfo && !hasSimilarProducts) {
+      return (
+        <PriceHistoryContainerStyled>
+          <PriceHistoryHeader>
+            <PriceHistoryTitle>최근 거래가</PriceHistoryTitle>
+            {product.isFromEverytime && (
+              <AnalyzeButton onClick={handleReanalyze} disabled={isAnalyzing}>
+                {isAnalyzing ? (
+                  <RotatingIcon>
+                    <FaSync size={12} />
+                  </RotatingIcon>
+                ) : (
+                  <FaSync size={12} />
+                )}
+                {isAnalyzing ? '분석 중...' : 'AI 분석'}
+              </AnalyzeButton>
+            )}
+          </PriceHistoryHeader>
+          
+          <EmptyHistoryMessage>
+            거래 가격 정보가 없습니다.
+            {product.isFromEverytime && ' AI 분석 버튼을 클릭하여 가격 정보를 찾아보세요.'}
+          </EmptyHistoryMessage>
+        </PriceHistoryContainerStyled>
+      );
+    }
+  
+    // 가격 이력이 있는 경우
+    return (
+      <PriceHistoryContainerStyled>
+        <PriceHistoryHeader>
+          <PriceHistoryTitle>최근 거래가</PriceHistoryTitle>
+          {product.isFromEverytime && (
+            <AnalyzeButton onClick={handleReanalyze} disabled={isAnalyzing}>
+              {isAnalyzing ? (
+                <RotatingIcon>
+                  <FaSync size={12} />
+                </RotatingIcon>
+              ) : (
+                <FaSync size={12} />
+              )}
+              {isAnalyzing ? '분석 중...' : '다시 분석'}
+            </AnalyzeButton>
+          )}
+          {hasHighConfidence && (
+            <AiConfidenceBadge>AI 신뢰도 높음</AiConfidenceBadge>
+          )}
+        </PriceHistoryHeader>
+        
+        {/* 내부 거래 가격 이력 - 안전한 옵셔널 체이닝 사용 */}
+        {product.aiAnalysisData?.priceHistory
+          ?.filter(history => history.source === '학생 거래')
+          .slice(0, 3)
+          .map((history, index) => (
+            <PriceEntry key={`history-${index}`} onClick={(e) => handleProductLinkClick(e, undefined, history.huntItemId)}>
+              <Price>{history.price.toLocaleString()} 원</Price>
+              <PriceBadge type={history.condition}>{getConditionText(history.condition)}</PriceBadge>
+              <SourceInfo>
+                <SourceName>{history.source}</SourceName>
+                {history.huntItemId && <FaExternalLinkAlt size={10} />}
+              </SourceInfo>
+            </PriceEntry>
+          ))
+        }
+        
+        {/* 외부 웹사이트 가격 정보 - 안전한 옵셔널 체이닝 사용 */}
+        {product.aiAnalysisData?.webPriceInfo
+          ?.slice(0, 3)
+          .map((info, index) => (
+            <PriceEntry key={`web-${index}`} onClick={(e) => handleProductLinkClick(e, info.url)}>
+              <Price>{info.price.toLocaleString()} 원</Price>
+              <PriceBadge type={info.condition || 'good'}>{getConditionText(info.condition || 'good')}</PriceBadge>
+              <SourceInfo>
+                <SourceName>{info.seller}</SourceName>
+                <FaExternalLinkAlt size={10} />
+              </SourceInfo>
+            </PriceEntry>
+          ))
+        }
+        
+        {/* 가격 정보 없는 경우 유사 상품 표시 - 안전한 옵셔널 체이닝 사용 */}
+        {!hasPriceHistory && !hasWebPriceInfo && hasSimilarProducts && 
+          product.aiAnalysisData?.similarProducts
+          ?.slice(0, 3)
+          .map((similar, index) => (
+            <PriceEntry key={`similar-${index}`} onClick={(e) => handleProductLinkClick(e, undefined, similar.id)}>
+              <Price>{similar.price.toLocaleString()} 원</Price>
+              <PriceBadge type="similar">유사 상품</PriceBadge>
+              <SourceInfo>
+                <SourceName>{similar.title.substring(0, 10)}{similar.title.length > 10 ? '...' : ''}</SourceName>
+                <FaExternalLinkAlt size={10} />
+              </SourceInfo>
+            </PriceEntry>
+          ))
+        }
+        
+        {/* 마지막 분석 시간 표시 - 안전한 옵셔널 체이닝 사용 */}
+        {product.aiAnalysisData?.lastAnalyzedAt && (
+          <AnalysisInfo>
+            마지막 분석: {new Date(product.aiAnalysisData.lastAnalyzedAt).toLocaleString()}
+          </AnalysisInfo>
+        )}
+      </PriceHistoryContainerStyled>
+    );
+  };
 
   // URL 쿼리 파라미터 업데이트
   const updateQueryParams = (params: Record<string, string | number | null>) => {
@@ -218,7 +419,8 @@ const Dashboard: React.FC = () => {
         setPagination(prev => ({ ...prev, currentPage: page }));
       }
     }
-  }, [location.search, pagination.currentPage, searchTerm, selectedCategory, showOnlyAvailable]); // location.search가 변경될 때만 실행
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [location.search]); // location.search가 변경될 때만 실행
 
   // 페이지 변경 처리
   const handlePageChange = (newPage: number) => {
@@ -494,27 +696,8 @@ const Dashboard: React.FC = () => {
                     </ProductMeta>
                   </ProductInfo>
                   
-                  <PriceHistoryContainer>
-                    <PriceHistoryTitle>최근 거래가</PriceHistoryTitle>
-                    
-                    <PriceEntry>
-                      <Price>{(product.price * 1.125).toLocaleString()} 원</Price>
-                      <PriceBadge type="good">상태 좋음</PriceBadge>
-                      <PriceDate>2025.02.11.</PriceDate>
-                    </PriceEntry>
-                    
-                    <PriceEntry>
-                      <Price>{(product.price * 1.25).toLocaleString()} 원</Price>
-                      <PriceBadge type="best">미개봉 / 최상</PriceBadge>
-                      <PriceDate>2025.02.01.</PriceDate>
-                    </PriceEntry>
-                    
-                    <PriceEntry>
-                      <Price>{(product.price * 0.8).toLocaleString()} 원</Price>
-                      <PriceBadge type="bad">상태 별로</PriceBadge>
-                      <PriceDate>2024.12.31.</PriceDate>
-                    </PriceEntry>
-                  </PriceHistoryContainer>
+                  {/* 가격 이력 컴포넌트 */}
+                  <PriceHistoryContainer product={product} />
                 </ProductLink>
               </ProductCard>
             ))}
@@ -535,86 +718,14 @@ const Dashboard: React.FC = () => {
   );
 };
 
-// 스타일 컴포넌트들 (기존 스타일 유지)
+export default Dashboard;
+
+// 스타일 컴포넌트
 const DashboardContainer = styled.div`
   max-width: 1200px;
   margin: 0 auto;
   padding: 40px 20px;
 `;
-
-// ... (기존 스타일 컴포넌트들)
-
-// 페이지네이션 관련 스타일 컴포넌트
-const PaginationContainer = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 40px 0 16px;
-  gap: 8px;
-`;
-
-const PaginationButton = styled.button<{ active?: boolean; disabled?: boolean }>`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 36px;
-  height: 36px;
-  border-radius: 4px;
-  border: none;
-  background-color: ${({ active, theme }) => 
-    active ? theme.colors.primary : theme.colors.white};
-  color: ${({ active, theme }) => 
-    active ? theme.colors.white : theme.colors.black};
-  font-size: ${({ theme }) => theme.typography.T5.fontSize};
-  font-weight: ${({ theme }) => theme.typography.T5.fontWeight};
-  font-family: ${({ theme }) => theme.typography.T5.fontFamily};
-  cursor: ${({ disabled }) => disabled ? 'not-allowed' : 'pointer'};
-  opacity: ${({ disabled }) => disabled ? 0.5 : 1};
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-  transition: all 0.2s;
-  
-  &:hover:not(:disabled) {
-    background-color: ${({ active, theme }) => 
-      active ? theme.colors.primary : theme.colors.purple[100]};
-  }
-  
-  svg {
-    font-size: 12px;
-  }
-  
-  & > svg + svg {
-    margin-left: -4px;
-  }
-`;
-
-const PageInfo = styled.div`
-  text-align: center;
-  font-size: ${({ theme }) => theme.typography.T6.fontSize};
-  font-weight: ${({ theme }) => theme.typography.T6.fontWeight};
-  font-family: ${({ theme }) => theme.typography.T6.fontFamily};
-  color: ${({ theme }) => theme.colors.gray[600]};
-  margin-bottom: 40px;
-`;
-
-const ResultSummary = styled.div`
-  font-size: ${({ theme }) => theme.typography.T5.fontSize};
-  font-weight: ${({ theme }) => theme.typography.T5.fontWeight};
-  font-family: ${({ theme }) => theme.typography.T5.fontFamily};
-  color: ${({ theme }) => theme.colors.gray[600]};
-  margin-bottom: 16px;
-  
-  strong {
-    color: ${({ theme }) => theme.colors.primary};
-    font-weight: ${({ theme }) => theme.typography.T4.fontWeight};
-  }
-  
-  span {
-    margin-left: 8px;
-  }
-`;
-
-// 여기에 기존 스타일 컴포넌트들을 복사하여 붙여넣으세요.
-// Title부터 EmptyMessage까지의 모든 스타일 컴포넌트
 
 const Title = styled.h1`
   font-size: ${({ theme }) => theme.typography.T2.fontSize};
@@ -904,7 +1015,7 @@ const ConditionBadge = styled.span<{ condition: string }>`
   font-weight: ${({ theme }) => theme.typography.T6.fontWeight};
   font-family: ${({ theme }) => theme.typography.T6.fontFamily};
   background-color: ${({ condition, theme }) => {
-    if (condition === 'best') return theme.colors.green[300];
+    if (condition === 'best') return theme.colors.green[600];
     if (condition === 'good') return theme.colors.blue[600];
     if (condition === 'soso') return theme.colors.purple[300];
     if (condition === 'bad') return theme.colors.red[300];
@@ -940,7 +1051,6 @@ const ProductMeta = styled.div`
   display: flex;
   align-items: center;
   gap: 16px;
-  margin-top: auto;
 `;
 
 const MetaItem = styled.div`
@@ -961,7 +1071,7 @@ const ProductDate = styled.span`
   margin-left: auto;
 `;
 
-const PriceHistoryContainer = styled.div`
+const PriceHistoryContainerStyled = styled.div`
   width: 300px;
   flex-shrink: 0;
   padding: 16px;
@@ -969,6 +1079,7 @@ const PriceHistoryContainer = styled.div`
   display: flex;
   flex-direction: column;
   gap: 12px;
+  position: relative;
   
   @media (max-width: 768px) {
     width: 100%;
@@ -981,6 +1092,9 @@ const PriceHistoryTitle = styled.h3`
   font-family: ${({ theme }) => theme.typography.T5.fontFamily};
   color: ${({ theme }) => theme.colors.black};
   margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
 `;
 
 const PriceEntry = styled.div`
@@ -1004,20 +1118,24 @@ const PriceBadge = styled.span<{ type: string }>`
   font-weight: ${({ theme }) => theme.typography.T7.fontWeight};
   font-family: ${({ theme }) => theme.typography.T7.fontFamily};
   background-color: ${({ type, theme }) => {
-    if (type === 'best') return theme.colors.green[300];
+    if (type === 'best') return theme.colors.green[600];
     if (type === 'good') return theme.colors.blue[600];
     if (type === 'bad') return theme.colors.red[300];
+    if (type === 'similar') return theme.colors.purple[300];
     return theme.colors.gray[300];
   }};
   color: ${({ theme }) => theme.colors.white};
   border-radius: 50px;
 `;
 
-const PriceDate = styled.span`
-  font-size: ${({ theme }) => theme.typography.T6.fontSize};
-  font-weight: ${({ theme }) => theme.typography.T6.fontWeight};
-  font-family: ${({ theme }) => theme.typography.T6.fontFamily};
-  color: ${({ theme }) => theme.colors.gray[600]};
+const AiConfidenceBadge = styled.span`
+  display: inline-block;
+  padding: 2px 6px;
+  background-color: ${({ theme }) => theme.colors.green[600]};
+  color: ${({ theme }) => theme.colors.white};
+  font-size: ${({ theme }) => theme.typography.T7.fontSize};
+  border-radius: 4px;
+  margin-left: 8px;
 `;
 
 const LoadingMessage = styled.p`
@@ -1038,4 +1156,139 @@ const EmptyMessage = styled.p`
   padding: 40px 0;
 `;
 
-export default Dashboard;
+const PaginationContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 40px 0 16px;
+  gap: 8px;
+`;
+
+const PaginationButton = styled.button<{ active?: boolean; disabled?: boolean }>`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 4px;
+  border: none;
+  background-color: ${({ active, theme }) => 
+    active ? theme.colors.primary : theme.colors.white};
+  color: ${({ active, theme }) => 
+    active ? theme.colors.white : theme.colors.black};
+  font-size: ${({ theme }) => theme.typography.T5.fontSize};
+  font-weight: ${({ theme }) => theme.typography.T5.fontWeight};
+  font-family: ${({ theme }) => theme.typography.T5.fontFamily};
+  cursor: ${({ disabled }) => disabled ? 'not-allowed' : 'pointer'};
+  opacity: ${({ disabled }) => disabled ? 0.5 : 1};
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  transition: all 0.2s;
+  
+  &:hover:not(:disabled) {
+    background-color: ${({ active, theme }) => 
+      active ? theme.colors.primary : theme.colors.purple[100]};
+  }
+  
+  svg {
+    font-size: 12px;
+  }
+  
+  & > svg + svg {
+    margin-left: -4px;
+  }
+`;
+
+const PageInfo = styled.div`
+  text-align: center;
+  font-size: ${({ theme }) => theme.typography.T6.fontSize};
+  font-weight: ${({ theme }) => theme.typography.T6.fontWeight};
+  font-family: ${({ theme }) => theme.typography.T6.fontFamily};
+  color: ${({ theme }) => theme.colors.gray[600]};
+  margin-bottom: 40px;
+`;
+
+const ResultSummary = styled.div`
+  font-size: ${({ theme }) => theme.typography.T5.fontSize};
+  font-weight: ${({ theme }) => theme.typography.T5.fontWeight};
+  font-family: ${({ theme }) => theme.typography.T5.fontFamily};
+  color: ${({ theme }) => theme.colors.gray[600]};
+  margin-bottom: 16px;
+  
+  strong {
+    color: ${({ theme }) => theme.colors.primary};
+    font-weight: ${({ theme }) => theme.typography.T4.fontWeight};
+  }
+  
+  span {
+    margin-left: 8px;
+  }
+`;
+
+const PriceHistoryHeader = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 12px;
+`;
+
+const AnalyzeButton = styled.button`
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  background-color: ${({ theme }) => theme.colors.primary};
+  color: ${({ theme }) => theme.colors.white};
+  border: none;
+  border-radius: 4px;
+  padding: 4px 8px;
+  font-size: ${({ theme }) => theme.typography.T7.fontSize};
+  cursor: pointer;
+  transition: all 0.2s;
+  
+  &:hover:not(:disabled) {
+    background-color: ${({ theme }) => theme.colors.purple[300]};
+  }
+  
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+`;
+
+const RotatingIcon = styled.span`
+  display: inline-block;
+`;
+
+const EmptyHistoryMessage = styled.p`
+  text-align: center;
+  color: ${({ theme }) => theme.colors.gray[600]};
+  font-size: ${({ theme }) => theme.typography.T6.fontSize};
+  padding: 20px 0;
+`;
+
+const SourceInfo = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  color: ${({ theme }) => theme.colors.gray[600]};
+  font-size: ${({ theme }) => theme.typography.T6.fontSize};
+  cursor: pointer;
+  
+  &:hover {
+    color: ${({ theme }) => theme.colors.primary};
+    text-decoration: underline;
+  }
+`;
+
+const SourceName = styled.span`
+  max-width: 80px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+`;
+
+const AnalysisInfo = styled.p`
+  font-size: ${({ theme }) => theme.typography.T7.fontSize};
+  color: ${({ theme }) => theme.colors.gray[600]};
+  text-align: right;
+  margin-top: 8px;
+`;
